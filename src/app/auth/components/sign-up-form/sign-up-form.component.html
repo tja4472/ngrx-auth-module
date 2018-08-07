@@ -1,0 +1,42 @@
+<form [formGroup]="loginForm"
+      novalidate>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-label position="stacked"
+                 color="primary">Email address</ion-label>
+      <ion-input formControlName="username"
+                 placeholder="Username"
+                 type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked"
+                 color="primary">Password</ion-label>
+      <ion-input type="password"
+                 formControlName="password"
+                 placeholder="Password"></ion-input>
+    </ion-item>
+
+    <ion-text *ngIf="error"
+              color="danger">
+      {{ error }}
+      <!--
+        <p [hidden]="username.valid || submitted == false" padding-left>
+          Username is required
+        </p>
+      -->
+    </ion-text>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="submit()"
+                    type="submit"
+                    expand="block">Sign Up</ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>

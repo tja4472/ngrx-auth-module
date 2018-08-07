@@ -1,0 +1,34 @@
+{
+  "rulesDirectory": ["node_modules/codelyzer"],
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rules": {
+    // codelyzer
+    // "component-selector": [true, "element", "tja", "kebab-case"],
+    //
+    // tslint
+    "interface-name":false,
+    "no-console": false,
+    /*
+    "no-submodule-imports": [
+      true,
+      "rxjs",
+      "@angular/platform-browser",
+      "@angular/core/testing",
+      "@angular/router/testing",
+      "@ionic-native"
+    ],    
+    */
+    //
+    // tslint: Rules to remove errors from initial template
+    // To be removed.
+    // "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    // "one-variable-per-declaration": false,
+    "member-access": false,
+    // "member-ordering": false,
+    "no-empty": false,
+    // "jsdoc-format": false,
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false
+  }
+}
