@@ -1,4 +1,4 @@
-import { reducer, initialState } from './task.reducer';
+import { initialState, reducer } from './task.reducer';
 
 describe('Task Reducer', () => {
   describe('unknown action', () => {
