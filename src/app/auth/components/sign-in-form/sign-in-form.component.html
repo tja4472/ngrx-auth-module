@@ -1,16 +1,17 @@
 <form [formGroup]="loginForm"
-      novalidate>
-      <ion-text>
-        Email Address: a.a@a.com<br>
-        Password: password
-      </ion-text>
+      (ngSubmit)="onSubmit()">
+  <ion-text>
+    Email Address: a.a@a.com
+    <br> Password: password
+  </ion-text>
   <ion-list lines="none">
     <ion-item>
       <ion-label position="stacked"
                  color="primary">Email address</ion-label>
       <ion-input formControlName="username"
                  placeholder="Username"
-                 type="email"></ion-input>
+                 type="email"
+                 required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -18,7 +19,8 @@
                  color="primary">Password</ion-label>
       <ion-input type="password"
                  formControlName="password"
-                 placeholder="Password"></ion-input>
+                 placeholder="Password"
+                 required></ion-input>
     </ion-item>
 
     <ion-text *ngIf="error"
@@ -35,8 +37,8 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button (click)="submit(loginForm.value)"
-                    type="button"
+        <ion-button type="submit"
+                    [disabled]="!loginForm.valid"
                     expand="block">Sign In</ion-button>
       </ion-col>
       <ion-col>
@@ -47,3 +49,13 @@
     </ion-row>
   </ion-grid>
 </form>
+
+<!--
+<p>
+  Form Value: {{ loginForm.value | json }}
+</p>
+
+<p>
+  Form Status: {{ loginForm.status }}
+</p>
+-->

@@ -34,7 +34,7 @@ export class SignUpFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  submit() {
+  onSubmit() {
     const value: Authenticate = this.loginForm.value;
 
     if (this.loginForm.valid) {

@@ -1,10 +1,3 @@
-/**
- * alpha.12
- * v4: Unexpected reactive form submit behavior
- * https://github.com/ionic-team/ionic/issues/14786#issuecomment-405809838
- *
- */
-
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -47,10 +40,9 @@ export class SignInFormComponent implements OnInit {
     this.SignUpClicked.emit();
   }
 
-  submit(formObject) {
-    console.warn(formObject);
-    // const value: Authenticate = this.loginForm.value;
-    const value: Authenticate = formObject;
+  onSubmit() {
+    //
+    const value: Authenticate = this.loginForm.value;
 
     if (this.loginForm.valid) {
       this.submitted.emit(value);
