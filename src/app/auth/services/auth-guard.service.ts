@@ -11,9 +11,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from './auth.service';
 
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, exhaustMap, filter, map, take, tap } from 'rxjs/operators';
+
 import * as fromAuth from '../reducers';
 
 /*
@@ -66,10 +67,11 @@ export class AuthGuardService implements CanActivate {
 
   checkStoreAuthentication() {
     //
-    return this.store.select(fromAuth.selectHasChecked).pipe(
+    return this.store.pipe(
+      select(fromAuth.selectHasChecked),
       filter((hasChecked) => hasChecked),
       exhaustMap(() =>
-        this.store.select(fromAuth.selectIsLoggedIn).pipe(take(1))
+        this.store.pipe(select(fromAuth.selectIsLoggedIn), take(1))
       )
     );
   }

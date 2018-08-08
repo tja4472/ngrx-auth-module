@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+
 import { DoSignUp, Login } from '../../actions/auth.actions';
 import { Authenticate } from '../../models/authentication.model';
 import * as fromAuth from '../../reducers';
@@ -10,8 +11,9 @@ import * as fromAuth from '../../reducers';
   styleUrls: ['./sign-in-page.component.css'],
 })
 export class SignInPageComponent implements OnInit {
-  error$ = this.store.select(fromAuth.selectLoginPageError);
-  pending$ = this.store.select(fromAuth.selectLoginPagePending);
+  error$ = this.store.pipe(select(fromAuth.selectLoginPageError));
+  pending$ = this.store.pipe(select(fromAuth.selectLoginPagePending));
+
   constructor(private store: Store<fromAuth.State>) {}
 
   ngOnInit() {}
