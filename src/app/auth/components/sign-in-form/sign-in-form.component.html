@@ -11,7 +11,13 @@
       <ion-input formControlName="username"
                  placeholder="Username"
                  type="email"
+                 autofocus
                  required></ion-input>
+      <div *ngIf="username.invalid  && (username.dirty || username.touched)">
+        <div *ngIf="username.hasError('required')">
+          Name is required.
+        </div>
+      </div>
     </ion-item>
 
     <ion-item>
@@ -21,6 +27,11 @@
                  formControlName="password"
                  placeholder="Password"
                  required></ion-input>
+      <div *ngIf="password.invalid  && (password.dirty || password.touched)">
+        <div *ngIf="password.hasError('required')">
+          Password is required.
+        </div>
+      </div>
     </ion-item>
 
     <ion-text *ngIf="error"
