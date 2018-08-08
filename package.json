@@ -2,6 +2,10 @@
   "name": "ngrx-auth-module",
   "version": "0.0.1",
   "author": "TJA",
+  "description": "ngrx-auth-module",  
+  "repository": {
+    "url": "https://github.com/tja4472/ngrx-auth-module"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -60,6 +64,5 @@
     "tslint": "5.11.0",
     "tslint-config-prettier": "1.14.0",
     "typescript": "2.9.2"
-  },
-  "description": "ngrx-auth-module"
+  }
 }
