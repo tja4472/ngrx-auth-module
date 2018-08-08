@@ -35,7 +35,8 @@ import { AlertOptions } from '@ionic/core';
 @Injectable()
 export class AuthEffects {
   @Effect()
-  autoLogin$ = this.actions$.ofType<AutoLogin>(AuthActionTypes.AutoLogin).pipe(
+  autoLogin$ = this.actions$.pipe(
+    ofType<AutoLogin>(AuthActionTypes.AutoLogin),
     exhaustMap(() =>
       this.authService.autoLogin().pipe(
         map((user) => {
@@ -50,7 +51,8 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  doSignUp$ = this.actions$.ofType<DoSignUp>(AuthActionTypes.DoSignUp).pipe(
+  doSignUp$ = this.actions$.pipe(
+    ofType<DoSignUp>(AuthActionTypes.DoSignUp),
     tap(() => {
       this.router.navigate(['/sign-up']);
     })
@@ -69,7 +71,8 @@ export class AuthEffects {
   */
 
   @Effect()
-  signUp$ = this.actions$.ofType<SignUp>(AuthActionTypes.SignUp).pipe(
+  signUp$ = this.actions$.pipe(
+    ofType<SignUp>(AuthActionTypes.SignUp),
     map((action) => action.payload),
     exhaustMap((auth) =>
       this.authService.signUp(auth).pipe(
@@ -80,7 +83,8 @@ export class AuthEffects {
   );
 
   @Effect()
-  login$ = this.actions$.ofType<Login>(AuthActionTypes.Login).pipe(
+  login$ = this.actions$.pipe(
+    ofType<Login>(AuthActionTypes.Login),
     map((action) => action.payload),
     exhaustMap((auth) =>
       this.authService.login(auth).pipe(
@@ -91,19 +95,18 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  loginRedirect$ = this.actions$
-    .ofType<LoginSuccess>(AuthActionTypes.LoginSuccess)
-    .pipe(
-      tap(() => {
-        // this.router.navigate(['/books']);
-        if (this.authService.redirectUrl === '') {
-          console.log('MMMMMMMMMMMM');
-          this.router.navigate(['/']);
-        } else {
-          this.router.navigate([this.authService.redirectUrl]);
-        }
-      })
-    );
+  loginRedirect$ = this.actions$.pipe(
+    ofType<LoginSuccess>(AuthActionTypes.LoginSuccess),
+    tap(() => {
+      // this.router.navigate(['/books']);
+      if (this.authService.redirectUrl === '') {
+        console.log('MMMMMMMMMMMM');
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate([this.authService.redirectUrl]);
+      }
+    })
+  );
 
   @Effect()
   signOutConfirmation$ = this.actions$.pipe(
@@ -159,17 +162,16 @@ export class AuthEffects {
   */
 
   @Effect()
-  signOut$ = this.actions$
-    .ofType<SignOutConfirmationOk>(AuthActionTypes.SignOut)
-    .pipe(
-      exhaustMap((auth) =>
-        this.authService.logout().pipe(
-          tap(() => this.router.navigate(['/sign-in'])),
-          map(() => new LogoutComplete()),
-          catchError(() => of(new LogoutComplete()))
-        )
+  signOut$ = this.actions$.pipe(
+    ofType<SignOutConfirmationOk>(AuthActionTypes.SignOut),
+    exhaustMap((auth) =>
+      this.authService.logout().pipe(
+        tap(() => this.router.navigate(['/sign-in'])),
+        map(() => new LogoutComplete()),
+        catchError(() => of(new LogoutComplete()))
       )
-    );
+    )
+  );
 
   @Effect()
   signOutConfirmationOk$ = this.actions$.pipe(
