@@ -8,9 +8,10 @@ import {
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { AuthRoutingModule } from './auth-routing.module';
-import { AuthEffects } from './effects/auth.effects';
-import { reducers } from './reducers';
+
+import { AuthRoutingModule } from '@auth/auth-routing.module';
+import { AuthEffects } from '@auth/effects/auth.effects';
+import { reducers } from '@auth/reducers';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -75,7 +76,7 @@ export class AuthModule {
   imports: [
     AuthModule,
     AuthRoutingModule,
-    StoreModule.forFeature('auth-feature', reducers),
+    StoreModule.forFeature('authFeature', reducers),
     EffectsModule.forFeature([AuthEffects]),
   ],
 })

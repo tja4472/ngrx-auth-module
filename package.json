@@ -36,6 +36,7 @@
     "angularfire2": "5.0.0-rc.11",
     "core-js": "2.5.7",
     "firebase": "5.3.1",
+    "ngrx-store-freeze": "0.2.4",
     "rxjs": "6.2.2",
     "zone.js": "0.8.26",
     "@angular/service-worker": "6.1.1"

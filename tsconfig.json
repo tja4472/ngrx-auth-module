@@ -10,6 +10,7 @@
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"],
+      "@auth/*": ["app/auth/*"],
       "@components/*": ["app/components/*"]
     },
     "target": "es5",

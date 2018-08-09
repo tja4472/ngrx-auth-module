@@ -20,7 +20,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-import { AuthModule } from './auth/auth.module';
+import { metaReducers, reducers } from '@app/reducers';
+
+import { AuthModule } from '@auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,26 +33,24 @@ import { AuthModule } from './auth/auth.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
-    AngularFirestoreModule,    
+    AngularFirestoreModule,
     ComponentsModule,
     // AppRoutingModule,
-    StoreModule.forRoot({
-      router: routerReducer,
-    }), 
-    EffectsModule.forRoot([]),   
-    AuthModule.forRoot(),    
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([]),
+    AuthModule.forRoot(),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router', // name of reducer key
-    }),    
+    }),
     StoreDevtoolsModule.instrument({
       name: 'NgRx 2018',
-    }),    
+    }),
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production,
     }),
     // AppRoutingModule: This should be after all other modules containing routes.
     // https://angular.io/guide/router#module-import-order-matter
-    AppRoutingModule,    
+    AppRoutingModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

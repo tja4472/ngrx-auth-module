@@ -1,14 +1,14 @@
 import {
-  ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
-  MetaReducer,
 } from '@ngrx/store';
-import { environment } from '../../../environments/environment';
-import * as fromAuth from './auth.reducer';
-import * as fromLoginPage from './login-page.reducer';
-import * as fromSignUpPage from './sign-up-page.reducer';
+
+import * as fromRoot from '@app/reducers';
+
+import * as fromAuth from '@auth/reducers/auth.reducer';
+import * as fromLoginPage from '@auth/reducers/login-page.reducer';
+import * as fromSignUpPage from '@auth/reducers/sign-up-page.reducer';
 
 export interface AuthFeatureState {
   auth: fromAuth.State;
@@ -16,10 +16,8 @@ export interface AuthFeatureState {
   signUpPage: fromSignUpPage.State;
 }
 
-// export interface State extends fromRoot.State {
-// tslint:disable-next-line:no-empty-interface
-export interface State {
-  // auth: fromAuth.State;
+export interface State extends fromRoot.State {
+  authFeature: AuthFeatureState;
 }
 
 export const reducers: ActionReducerMap<AuthFeatureState> = {
@@ -28,14 +26,10 @@ export const reducers: ActionReducerMap<AuthFeatureState> = {
   signUpPage: fromSignUpPage.reducer,
 };
 
-// tslint:disable-next-line:array-type
-export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? []
-  : [];
-
-export const selectAuthFeatureState = createFeatureSelector<AuthFeatureState>(
-  'auth-feature'
-);
+export const selectAuthFeatureState = createFeatureSelector<
+  State,
+  AuthFeatureState
+>('authFeature');
 
 export const selectAuthState = createSelector(
   selectAuthFeatureState,
