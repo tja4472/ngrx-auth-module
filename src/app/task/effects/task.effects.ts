@@ -4,7 +4,6 @@ import { TaskActionTypes } from '../actions/task.actions';
 
 @Injectable()
 export class TaskEffects {
-
   @Effect()
   loadFoos$ = this.actions$.pipe(ofType(TaskActionTypes.LoadTasks));
 

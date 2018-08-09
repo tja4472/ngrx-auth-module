@@ -11,10 +11,7 @@ describe('HomePageEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        HomePageEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [HomePageEffects, provideMockActions(() => actions$)],
     });
 
     effects = TestBed.get(HomePageEffects);

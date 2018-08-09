@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum HomePageActionTypes {
-  SignOut = '[HomePage] Sign Out'
+  SignOut = '[HomePage] Sign Out',
 }
 
 export class SignOut implements Action {

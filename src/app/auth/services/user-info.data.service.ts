@@ -26,7 +26,7 @@ interface FirestoreDoc {
 export class UserInfoDataService {
   //
   constructor(public readonly afs: AngularFirestore) {
-    console.log('UserInfoDataService:constructor');      
+    console.log('UserInfoDataService:constructor');
   }
 
   public async getUserData(userId: string): Promise<UserInfo> {

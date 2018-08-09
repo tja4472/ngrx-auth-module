@@ -11,10 +11,7 @@ describe('TaskEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        TaskEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [TaskEffects, provideMockActions(() => actions$)],
     });
 
     effects = TestBed.get(TaskEffects);

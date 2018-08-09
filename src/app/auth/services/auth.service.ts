@@ -89,7 +89,10 @@ export class AuthService {
     //
     const result$ = from(this.afAuth.auth.signOut()).pipe(
       switchMap(() => {
-        return this.signedOut$.pipe(take(1), map(() => true));
+        return this.signedOut$.pipe(
+          take(1),
+          map(() => true)
+        );
       })
     );
 

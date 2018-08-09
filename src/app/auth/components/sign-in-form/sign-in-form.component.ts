@@ -28,8 +28,12 @@ export class SignInFormComponent implements OnInit {
   @Output()
   submitted = new EventEmitter<Authenticate>();
 
-  get password() { return this.loginForm.get('password'); }
-  get username() { return this.loginForm.get('username'); }
+  get password() {
+    return this.loginForm.get('password');
+  }
+  get username() {
+    return this.loginForm.get('username');
+  }
 
   public loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),

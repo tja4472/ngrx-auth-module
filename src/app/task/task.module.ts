@@ -12,8 +12,8 @@ import { TaskRoutingModule } from './task-routing.module';
     CommonModule,
     TaskRoutingModule,
     StoreModule.forFeature('task', fromTask.reducer),
-    EffectsModule.forFeature([TaskEffects])
+    EffectsModule.forFeature([TaskEffects]),
   ],
-  declarations: []
+  declarations: [],
 })
-export class TaskModule { }
+export class TaskModule {}
