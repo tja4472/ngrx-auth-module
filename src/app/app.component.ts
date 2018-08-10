@@ -10,6 +10,8 @@ import { UserModel } from './auth/models/user.model';
 
 import * as fromAuth from './auth/reducers';
 
+import { authQuery } from '@app/auth/selectors/auth.selectors';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -34,7 +36,8 @@ export class AppComponent {
     private platform: Platform,
     private store: Store<fromAuth.State>
   ) {
-    this.user$ = this.store.pipe(select(fromAuth.selectAuthUser));
+    // this.user$ = this.store.pipe(select(fromAuth.selectAuthUser));
+    this.user$ = this.store.pipe(select(authQuery.selectAuthUser));
     this.initializeApp();
   }
 

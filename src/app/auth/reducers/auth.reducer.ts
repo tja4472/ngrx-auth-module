@@ -1,19 +1,21 @@
-import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
-import { UserModel } from '../models/user.model';
-// import { Action } from '@ngrx/store';
+import { AuthActions, AuthActionTypes } from '@auth/actions/auth.actions';
+import { UserModel } from '@auth/models/user.model';
 
-export interface State
+export interface AuthState
   extends Readonly<{
       hasChecked: boolean;
       user: UserModel | null;
     }> {}
 
-export const initialState: State = {
+export const initialState: AuthState = {
   hasChecked: false,
   user: null,
 };
 
-export function reducer(state = initialState, action: AuthActions): State {
+export function authReducer(
+  state = initialState,
+  action: AuthActions
+): AuthState {
   switch (action.type) {
     case AuthActionTypes.AutoLoginSignedOut:
       return { ...state, hasChecked: true };
@@ -29,6 +31,3 @@ export function reducer(state = initialState, action: AuthActions): State {
       return state;
   }
 }
-
-export const selectHasChecked = (state: State) => state.hasChecked;
-export const selectUser = (state: State) => state.user;

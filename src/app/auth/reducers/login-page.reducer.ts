@@ -1,17 +1,19 @@
-// import { Action } from '@ngrx/store';
-import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
+import { AuthActions, AuthActionTypes } from '@auth/actions/auth.actions';
 
-export interface State {
+export interface LoginPageState {
   pending: boolean;
   error: string | null;
 }
 
-export const initialState: State = {
+export const initialState: LoginPageState = {
   pending: false,
   error: null,
 };
 
-export function reducer(state = initialState, action: AuthActions): State {
+export function loginPageReducer(
+  state = initialState,
+  action: AuthActions
+): LoginPageState {
   switch (action.type) {
     case AuthActionTypes.Login: {
       return { ...state, pending: true };
@@ -30,6 +32,3 @@ export function reducer(state = initialState, action: AuthActions): State {
     }
   }
 }
-
-export const selectPending = (state: State) => state.pending;
-export const selectError = (state: State) => state.error;
