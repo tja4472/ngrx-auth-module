@@ -23,6 +23,7 @@ import { SignUpPageComponent } from './containers/sign-up-page/sign-up-page.comp
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
 
+import { AuthFacade } from '@auth/facades/auth.facade';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { UserInfoDataService } from './services/user-info.data.service';
@@ -66,7 +67,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootAuthModule,
-      providers: [AuthService, AuthGuardService, UserInfoDataService],
+      providers: [AuthFacade, AuthService, AuthGuardService, UserInfoDataService],
     };
   }
 }

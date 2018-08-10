@@ -4,13 +4,8 @@ import { Platform } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
 
-import { select, Store } from '@ngrx/store';
-
+import { AuthFacade } from '@auth/facades/auth.facade';
 import { UserModel } from './auth/models/user.model';
-
-import * as fromAuth from './auth/reducers';
-
-import { authQuery } from '@app/auth/selectors/auth.selectors';
 
 @Component({
   selector: 'app-root',
@@ -33,11 +28,11 @@ export class AppComponent {
   public user$: Observable<UserModel>;
 
   constructor(
+    private authFacade: AuthFacade,
     private platform: Platform,
-    private store: Store<fromAuth.State>
   ) {
-    // this.user$ = this.store.pipe(select(fromAuth.selectAuthUser));
-    this.user$ = this.store.pipe(select(authQuery.selectAuthUser));
+    this.user$ = this.authFacade.authUser$;
+
     this.initializeApp();
   }
 

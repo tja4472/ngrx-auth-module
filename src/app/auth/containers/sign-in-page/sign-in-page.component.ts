@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 
-import { loginPageQuery } from '@app/auth/selectors/login-page.selectors';
-import { DoSignUp, Login } from '../../actions/auth.actions';
-import { Authenticate } from '../../models/authentication.model';
-import * as fromAuth from '../../reducers';
+import { AuthFacade } from '@auth/facades/auth.facade';
+import { Authenticate } from '@auth/models/authentication.model';
 
 @Component({
   selector: 'tja-sign-in-page',
@@ -12,18 +9,18 @@ import * as fromAuth from '../../reducers';
   styleUrls: ['./sign-in-page.component.css'],
 })
 export class SignInPageComponent implements OnInit {
-  error$ = this.store.pipe(select(loginPageQuery.selectLoginPageError));
-  pending$ = this.store.pipe(select(loginPageQuery.selectLoginPagePending));
+  error$ = this.authFacade.signInPageError$;
+  pending$ = this.authFacade.signInPagePending$;
 
-  constructor(private store: Store<fromAuth.State>) {}
+  constructor(private authFacade: AuthFacade) {}
 
   ngOnInit() {}
 
   onLogin(credentials: Authenticate) {
-    this.store.dispatch(new Login(credentials));
+    this.authFacade.signIn(credentials);
   }
 
   onSignUp() {
-    this.store.dispatch(new DoSignUp());
+    this.authFacade.showSignUpPage();
   }
 }
