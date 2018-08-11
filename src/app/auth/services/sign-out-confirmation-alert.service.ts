@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 
 import { AlertOptions } from '@ionic/core';
 
-import { AuthFacade } from '@app/auth/facades/auth.facade';
+import { SignOutConfirmationAlertFacade } from '@app/auth/facades/sign-out-confirmation-alert.facade';
 
 /*
 @Injectable({
@@ -15,7 +15,7 @@ import { AuthFacade } from '@app/auth/facades/auth.facade';
 export class SignOutConfirmationAlertService {
   constructor(
     private alertCtrl: AlertController,
-    private authFacade: AuthFacade
+    private signOutConfirmationAlertFacade: SignOutConfirmationAlertFacade
   ) {}
 
   public async show() {
@@ -25,14 +25,14 @@ export class SignOutConfirmationAlertService {
           text: 'Cancel',
           handler: () => {
             // console.log('Cancel============');
-            this.authFacade.SignOutConfirmationCancel();
+            this.signOutConfirmationAlertFacade.Cancelled();
           },
         },
         {
           text: 'Ok',
           handler: () => {
             // console.log('OK============');
-            this.authFacade.SignOutConfirmationOk();
+            this.signOutConfirmationAlertFacade.Accepted();
           },
         },
       ],

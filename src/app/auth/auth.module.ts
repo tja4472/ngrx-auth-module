@@ -24,6 +24,7 @@ import { SignInFormComponent } from '@app/auth/components/sign-in-form/sign-in-f
 import { SignUpFormComponent } from '@app/auth/components/sign-up-form/sign-up-form.component';
 
 import { AuthFacade } from '@app/auth/facades/auth.facade';
+import { SignOutConfirmationAlertFacade } from '@app/auth/facades/sign-out-confirmation-alert.facade';
 import { AuthGuardService } from '@app/auth/services/auth-guard.service';
 import { AuthService } from '@app/auth/services/auth.service';
 import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-confirmation-alert.service';
@@ -68,7 +69,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootAuthModule,
-      providers: [SignOutConfirmationAlertService, AuthFacade, AuthService, AuthGuardService, UserInfoDataService],
+      providers: [SignOutConfirmationAlertFacade, SignOutConfirmationAlertService, AuthFacade, AuthService, AuthGuardService, UserInfoDataService],
     };
   }
 }

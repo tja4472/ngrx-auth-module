@@ -63,11 +63,11 @@ export class SignOut implements Action {
   readonly type = AuthActionTypes.SignOut;
 }
 //
-export class SignOutConfirmationCancel implements Action {
+export class SignOutConfirmationCancelled implements Action {
   readonly type = SignOutConfirmationActionTypes.Cancel;
 }
 
-export class SignOutConfirmationOk implements Action {
+export class SignOutConfirmationAccepted implements Action {
   readonly type = SignOutConfirmationActionTypes.Ok;
 }
 
@@ -98,8 +98,8 @@ export type AuthActions =
   | LoginSuccess
   | LoginFailure
   | SignOutConfirmationShow
-  | SignOutConfirmationCancel
-  | SignOutConfirmationOk
+  | SignOutConfirmationCancelled
+  | SignOutConfirmationAccepted
   | LogoutComplete
   | SignOut
   | SignUp

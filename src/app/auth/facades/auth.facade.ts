@@ -2,13 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import {
-  DoSignUp,
-  Login,
-  SignOutConfirmationCancel,
-  SignOutConfirmationOk,
-  SignUp,
-} from '@app/auth/actions/auth.actions';
+import { DoSignUp, Login, SignUp } from '@app/auth/actions/auth.actions';
 import { Authenticate } from '@app/auth/models/authentication.model';
 import { State } from '@app/auth/reducers';
 import { authQuery } from '@app/auth/selectors/auth.selectors';
@@ -47,14 +41,5 @@ export class AuthFacade {
 
   public showSignUpPage() {
     this.store.dispatch(new DoSignUp());
-  }
-
-  // ===========================================
-  public SignOutConfirmationCancel() {
-    this.store.dispatch(new SignOutConfirmationCancel());
-  }
-
-  public SignOutConfirmationOk() {
-    this.store.dispatch(new SignOutConfirmationOk());
   }
 }

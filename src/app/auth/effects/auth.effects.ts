@@ -16,9 +16,9 @@ import {
   LoginSuccess,
   LogoutComplete,
   SignOut,
+  SignOutConfirmationAccepted,
   SignOutConfirmationActionTypes,
-  SignOutConfirmationCancel,
-  SignOutConfirmationOk,
+  SignOutConfirmationCancelled,
   SignOutConfirmationShow,
   SignUp,
   SignUpFailure,
@@ -170,7 +170,7 @@ export class AuthEffects {
 
   @Effect()
   signOut$ = this.actions$.pipe(
-    ofType<SignOutConfirmationOk>(AuthActionTypes.SignOut),
+    ofType<SignOutConfirmationAccepted>(AuthActionTypes.SignOut),
     exhaustMap((auth) =>
       this.authService.logout().pipe(
         tap(() => this.router.navigate(['/sign-in'])),
@@ -182,7 +182,7 @@ export class AuthEffects {
 
   @Effect()
   signOutConfirmationOk$ = this.actions$.pipe(
-    ofType<SignOutConfirmationOk>(SignOutConfirmationActionTypes.Ok),
+    ofType<SignOutConfirmationAccepted>(SignOutConfirmationActionTypes.Ok),
     map(() => new SignOut())
   );
 
