@@ -9,9 +9,7 @@
     "experimentalDecorators": true,
     "baseUrl": "src",
     "paths": {
-      "@app/*": ["app/*"],
-      "@auth/*": ["app/auth/*"],
-      "@components/*": ["app/components/*"]
+      "@app/*": ["app/*"]
     },
     "target": "es5",
     "lib": [

@@ -6,9 +6,9 @@ import {
 
 import * as fromRoot from '@app/reducers';
 
-import * as fromAuth from '@auth/reducers/auth.reducer';
-import * as fromLoginPage from '@auth/reducers/login-page.reducer';
-import * as fromSignUpPage from '@auth/reducers/sign-up-page.reducer';
+import * as fromAuth from '@app/auth/reducers/auth.reducer';
+import * as fromLoginPage from '@app/auth/reducers/login-page.reducer';
+import * as fromSignUpPage from '@app/auth/reducers/sign-up-page.reducer';
 
 export interface AuthFeatureState {
   auth: fromAuth.AuthState;

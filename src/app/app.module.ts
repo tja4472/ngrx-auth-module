@@ -22,7 +22,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { metaReducers, reducers } from '@app/reducers';
 
-import { AuthModule } from '@auth/auth.module';
+import { AuthModule } from '@app/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],

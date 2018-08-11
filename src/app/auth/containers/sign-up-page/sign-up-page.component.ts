@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthFacade } from '@auth/facades/auth.facade';
-import { Authenticate } from '@auth/models/authentication.model';
+import { AuthFacade } from '@app/auth/facades/auth.facade';
+import { Authenticate } from '@app/auth/models/authentication.model';
 
 @Component({
   selector: 'tja-sign-up-page',

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { MenuAuthComponent } from '@components/menu-auth/menu-auth.component';
+import { MenuAuthComponent } from '@app/components/menu-auth/menu-auth.component';
 
 @NgModule({
   imports: [

@@ -1,4 +1,4 @@
-import { AuthActions, AuthActionTypes } from '@auth/actions/auth.actions';
+import { AuthActions, AuthActionTypes } from '@app/auth/actions/auth.actions';
 
 export interface LoginPageState {
   pending: boolean;

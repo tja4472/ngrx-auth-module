@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
 
-import { AuthFacade } from '@auth/facades/auth.facade';
+import { AuthFacade } from '@app/auth/facades/auth.facade';
 import { UserModel } from './auth/models/user.model';
 
 @Component({

@@ -1,5 +1,5 @@
-import { AuthActions, AuthActionTypes } from '@auth/actions/auth.actions';
-import { UserModel } from '@auth/models/user.model';
+import { AuthActions, AuthActionTypes } from '@app/auth/actions/auth.actions';
+import { UserModel } from '@app/auth/models/user.model';
 
 export interface AuthState
   extends Readonly<{

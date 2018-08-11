@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
-import { AuthFeatureState, selectAuthFeatureState } from '@auth/reducers';
-import { LoginPageState } from '@auth/reducers/login-page.reducer';
+import { AuthFeatureState, selectAuthFeatureState } from '@app/auth/reducers';
+import { LoginPageState } from '@app/auth/reducers/login-page.reducer';
 
 const selectLoginPageState = createSelector(
   selectAuthFeatureState,
