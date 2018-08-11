@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-// import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../services/auth.service';
-
-// import { LogoutPromptComponent } from '@app/auth/components/logout-prompt.component';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { defer, from, Observable, of } from 'rxjs';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
@@ -26,11 +22,10 @@ import {
   SignOutConfirmationShow,
   SignUp,
   SignUpFailure,
-} from '../actions/auth.actions';
+} from '@app/auth/actions/auth.actions';
 
-import { AlertController } from '@ionic/angular';
-// tslint:disable-next-line:no-implicit-dependencies
-import { AlertOptions } from '@ionic/core';
+import { AuthService } from '@app/auth/services/auth.service';
+import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-confirmation-alert.service';
 
 @Injectable()
 export class AuthEffects {
@@ -108,6 +103,7 @@ export class AuthEffects {
     })
   );
 
+  /*
   @Effect()
   signOutConfirmation$ = this.actions$.pipe(
     ofType<SignOutConfirmationShow>(SignOutConfirmationActionTypes.Show),
@@ -123,6 +119,17 @@ export class AuthEffects {
       )
     )
   );
+  */
+
+  @Effect({ dispatch: false })
+  signOutConfirmation$ = this.actions$.pipe(
+    ofType<SignOutConfirmationShow>(SignOutConfirmationActionTypes.Show),
+    tap(() => this.signOutConfirmationAlertService.show()),
+  );
+
+
+
+
 
   /*
     @Effect({ dispatch: false })
@@ -203,35 +210,6 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    // private dialogService: MatDialog,
-    public alertCtrl: AlertController
+    private signOutConfirmationAlertService: SignOutConfirmationAlertService,
   ) {}
-
-  async showSignOutPrompt() {
-    return new Promise<boolean>(async (resolve) => {
-      const options: AlertOptions = {
-        buttons: [
-          {
-            text: 'Cancel',
-            handler: () => {
-              console.log('Cancel============');
-              resolve(false);
-            },
-          },
-          {
-            text: 'Ok',
-            handler: () => {
-              console.log('OK============');
-              resolve(true);
-            },
-          },
-        ],
-        header: 'Sign Out',
-        enableBackdropDismiss: false,
-        message: 'Are you sure you want to sign out?',
-      };
-      const alert = await this.alertCtrl.create(options);
-      await alert.present();
-    });
-  }
 }

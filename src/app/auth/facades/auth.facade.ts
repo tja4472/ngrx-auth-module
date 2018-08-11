@@ -2,12 +2,18 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { DoSignUp, Login, SignUp } from '@auth/actions/auth.actions';
-import { Authenticate } from '@auth/models/authentication.model';
-import { State } from '@auth/reducers';
-import { authQuery } from '@auth/selectors/auth.selectors';
-import { loginPageQuery } from '@auth/selectors/login-page.selectors';
-import { signUpPageQuery } from '@auth/selectors/sign-up-page.selectors';
+import {
+  DoSignUp,
+  Login,
+  SignOutConfirmationCancel,
+  SignOutConfirmationOk,
+  SignUp,
+} from '@app/auth/actions/auth.actions';
+import { Authenticate } from '@app/auth/models/authentication.model';
+import { State } from '@app/auth/reducers';
+import { authQuery } from '@app/auth/selectors/auth.selectors';
+import { loginPageQuery } from '@app/auth/selectors/login-page.selectors';
+import { signUpPageQuery } from '@app/auth/selectors/sign-up-page.selectors';
 
 @Injectable()
 export class AuthFacade {
@@ -41,5 +47,14 @@ export class AuthFacade {
 
   public showSignUpPage() {
     this.store.dispatch(new DoSignUp());
+  }
+
+  // ===========================================
+  public SignOutConfirmationCancel() {
+    this.store.dispatch(new SignOutConfirmationCancel());
+  }
+
+  public SignOutConfirmationOk() {
+    this.store.dispatch(new SignOutConfirmationOk());
   }
 }

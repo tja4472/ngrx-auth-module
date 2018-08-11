@@ -9,24 +9,25 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { AuthRoutingModule } from '@auth/auth-routing.module';
-import { AuthEffects } from '@auth/effects/auth.effects';
-import { reducers } from '@auth/reducers';
+import { AuthRoutingModule } from '@app/auth/auth-routing.module';
+import { AuthEffects } from '@app/auth/effects/auth.effects';
+import { reducers } from '@app/auth/reducers';
 
 import { IonicModule } from '@ionic/angular';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { SignInPageComponent } from './containers/sign-in-page/sign-in-page.component';
-import { SignUpPageComponent } from './containers/sign-up-page/sign-up-page.component';
+import { SignInPageComponent } from '@app/auth/containers/sign-in-page/sign-in-page.component';
+import { SignUpPageComponent } from '@app/auth/containers/sign-up-page/sign-up-page.component';
 
-import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
-import { SignUpFormComponent } from './components/sign-up-form/sign-up-form.component';
+import { SignInFormComponent } from '@app/auth/components/sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from '@app/auth/components/sign-up-form/sign-up-form.component';
 
-import { AuthFacade } from '@auth/facades/auth.facade';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
-import { UserInfoDataService } from './services/user-info.data.service';
+import { AuthFacade } from '@app/auth/facades/auth.facade';
+import { AuthGuardService } from '@app/auth/services/auth-guard.service';
+import { AuthService } from '@app/auth/services/auth.service';
+import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-confirmation-alert.service';
+import { UserInfoDataService } from '@app/auth/services/user-info.data.service';
 
 export const COMPONENTS = [
   SignInPageComponent,
@@ -67,7 +68,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootAuthModule,
-      providers: [AuthFacade, AuthService, AuthGuardService, UserInfoDataService],
+      providers: [SignOutConfirmationAlertService, AuthFacade, AuthService, AuthGuardService, UserInfoDataService],
     };
   }
 }
