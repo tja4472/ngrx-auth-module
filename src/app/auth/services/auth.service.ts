@@ -85,7 +85,7 @@ export class AuthService {
     return result$;
   }
 
-  public logout(): Observable<boolean> {
+  public signOut(): Observable<boolean> {
     //
     const result$ = from(this.afAuth.auth.signOut()).pipe(
       switchMap(() => {

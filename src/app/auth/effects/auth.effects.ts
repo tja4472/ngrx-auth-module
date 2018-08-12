@@ -14,8 +14,8 @@ import {
   Login,
   LoginFailure,
   LoginSuccess,
-  LogoutComplete,
   SignOut,
+  SignOutComplete,
   SignUp,
   SignUpFailure,
 } from '@app/auth/actions/auth.actions';
@@ -165,10 +165,10 @@ export class AuthEffects {
   signOut$ = this.actions$.pipe(
     ofType<SignOut>(AuthActionTypes.SignOut),
     exhaustMap(() =>
-      this.authService.logout().pipe(
+      this.authService.signOut().pipe(
         tap(() => this.router.navigate(['/sign-in'])),
-        map(() => new LogoutComplete()),
-        catchError(() => of(new LogoutComplete()))
+        map(() => new SignOutComplete()),
+        // catchError(() => of(new SignOutComplete()))
       )
     )
   );

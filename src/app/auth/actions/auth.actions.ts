@@ -10,12 +10,12 @@ export enum AuthActionTypes {
   //
   DoSignUp = '[Auth] Do Sign Up',
   Login = '[Login Page] Login',
-  LoginSuccess = '[Auth API] Login Success',
-  LoginFailure = '[Auth API] Login Failure',
+  LoginSuccess = '[Auth API] Login - Success',
+  LoginFailure = '[Auth API] Login - Failure',
   SignOut = '[Auth API] Sign Out',
-  LogoutComplete = '[Auth API] Logout Complete',
+  SignOutComplete = '[Auth API] Sign Out - Complete',
   SignUp = '[Auth] Sign Up',
-  SignUpFailure = '[Auth] Sign Up Failure',
+  SignUpFailure = '[Auth] Sign Up - Failure',
 }
 
 export class AutoSignIn implements Action {
@@ -58,8 +58,8 @@ export class SignOut implements Action {
   readonly type = AuthActionTypes.SignOut;
 }
 
-export class LogoutComplete implements Action {
-  readonly type = AuthActionTypes.LogoutComplete;
+export class SignOutComplete implements Action {
+  readonly type = AuthActionTypes.SignOutComplete;
 }
 
 export class SignUp implements Action {
@@ -80,7 +80,7 @@ export type AuthActions =
   | Login
   | LoginSuccess
   | LoginFailure
-  | LogoutComplete
-  | SignOut
+  | SignOut  
+  | SignOutComplete
   | SignUp
   | SignUpFailure;
