@@ -4,9 +4,10 @@ import { Authenticate } from '../models/authentication.model';
 import { UserModel } from '../models/user.model';
 
 export enum AuthActionTypes {
-  AutoLogin = '[Auth API] Auto Login',
-  AutoLoginSignedOut = '[Auth API] Auto Login Signed Out',
-  AutoLoginSuccess = '[Auth API] Auto Login Success',
+  AutoSignIn = '[Auth API] Auto Sign In',
+  AutoSignInHaveUser = '[Auth API] Auto Sign In - Have User',
+  AutoSignInNoUser = '[Auth API] Auto Sign In - No User',
+  //
   DoSignUp = '[Auth] Do Sign Up',
   Login = '[Login Page] Login',
   LoginSuccess = '[Auth API] Login Success',
@@ -17,18 +18,18 @@ export enum AuthActionTypes {
   SignUpFailure = '[Auth] Sign Up Failure',
 }
 
-export class AutoLogin implements Action {
-  readonly type = AuthActionTypes.AutoLogin;
+export class AutoSignIn implements Action {
+  readonly type = AuthActionTypes.AutoSignIn;
 }
 
-export class AutoLoginSignedOut implements Action {
-  readonly type = AuthActionTypes.AutoLoginSignedOut;
-}
-
-export class AutoLoginSuccess implements Action {
-  readonly type = AuthActionTypes.AutoLoginSuccess;
+export class AutoSignInHaveUser implements Action {
+  readonly type = AuthActionTypes.AutoSignInHaveUser;
 
   constructor(readonly payload: { user: UserModel }) {}
+}
+
+export class AutoSignInNoUser implements Action {
+  readonly type = AuthActionTypes.AutoSignInNoUser;
 }
 
 export class DoSignUp implements Action {
@@ -74,8 +75,8 @@ export class SignUpFailure implements Action {
 }
 
 export type AuthActions =
-  | AutoLoginSignedOut
-  | AutoLoginSuccess
+  | AutoSignInHaveUser
+  | AutoSignInNoUser
   | Login
   | LoginSuccess
   | LoginFailure

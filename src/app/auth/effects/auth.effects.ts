@@ -7,9 +7,9 @@ import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 
 import {
   AuthActionTypes,
-  AutoLogin,
-  AutoLoginSignedOut,
-  AutoLoginSuccess,
+  AutoSignIn,
+  AutoSignInHaveUser,
+  AutoSignInNoUser,
   DoSignUp,
   Login,
   LoginFailure,
@@ -33,15 +33,15 @@ import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-con
 @Injectable()
 export class AuthEffects {
   @Effect()
-  autoLogin$ = this.actions$.pipe(
-    ofType<AutoLogin>(AuthActionTypes.AutoLogin),
+  autoSignIn$ = this.actions$.pipe(
+    ofType<AutoSignIn>(AuthActionTypes.AutoSignIn),
     exhaustMap(() =>
-      this.authService.autoLogin().pipe(
+      this.authService.autoSignIn().pipe(
         map((user) => {
           if (!!user) {
-            return new AutoLoginSuccess({ user });
+            return new AutoSignInHaveUser({ user });
           } else {
-            return new AutoLoginSignedOut();
+            return new AutoSignInNoUser();
           }
         })
       )
@@ -209,7 +209,7 @@ export class AuthEffects {
 
   @Effect()
   init$: Observable<any> = defer(() => of(null)).pipe(
-    map(() => new AutoLogin())
+    map(() => new AutoSignIn())
   );
 
   constructor(

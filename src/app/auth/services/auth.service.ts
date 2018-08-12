@@ -67,7 +67,7 @@ export class AuthService {
     this.signedInSignedOut$ = merge(this.signedIn$, this.signedOut$);
   }
 
-  public autoLogin(): Observable<UserModel> {
+  public autoSignIn(): Observable<UserModel> {
     //
     return this.signedInSignedOut$.pipe(take(1));
   }

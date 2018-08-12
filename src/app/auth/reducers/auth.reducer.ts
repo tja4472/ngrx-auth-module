@@ -17,11 +17,11 @@ export function authReducer(
   action: AuthActions
 ): AuthState {
   switch (action.type) {
-    case AuthActionTypes.AutoLoginSignedOut:
+    case AuthActionTypes.AutoSignInNoUser:
       return { ...state, hasChecked: true };
 
     case AuthActionTypes.LoginSuccess:
-    case AuthActionTypes.AutoLoginSuccess:
+    case AuthActionTypes.AutoSignInHaveUser:
       return { ...state, hasChecked: true, user: action.payload.user };
 
     case AuthActionTypes.SignOut:
