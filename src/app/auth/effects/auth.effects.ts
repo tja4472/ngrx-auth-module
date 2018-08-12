@@ -16,13 +16,16 @@ import {
   LoginSuccess,
   LogoutComplete,
   SignOut,
-  SignOutConfirmationAccepted,
-  SignOutConfirmationActionTypes,
-  SignOutConfirmationCancelled,
-  SignOutConfirmationShow,
   SignUp,
   SignUpFailure,
 } from '@app/auth/actions/auth.actions';
+
+// tslint:disable:no-duplicate-imports
+import * as fromSignOutConfirmationAlertActions from '@app/auth/actions/sign-out-confirmation-alert.actions';
+import {
+  SignOutConfirmationAlertActionTypes,
+} from '@app/auth/actions/sign-out-confirmation-alert.actions';
+// tslint:enable:no-duplicate-imports
 
 import { AuthService } from '@app/auth/services/auth.service';
 import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-confirmation-alert.service';
@@ -121,16 +124,6 @@ export class AuthEffects {
   );
   */
 
-  @Effect({ dispatch: false })
-  signOutConfirmation$ = this.actions$.pipe(
-    ofType<SignOutConfirmationShow>(SignOutConfirmationActionTypes.Show),
-    tap(() => this.signOutConfirmationAlertService.show()),
-  );
-
-
-
-
-
   /*
     @Effect({ dispatch: false })
     logoutConfirmation$ = this.actions$
@@ -170,8 +163,8 @@ export class AuthEffects {
 
   @Effect()
   signOut$ = this.actions$.pipe(
-    ofType<SignOutConfirmationAccepted>(AuthActionTypes.SignOut),
-    exhaustMap((auth) =>
+    ofType<SignOut>(AuthActionTypes.SignOut),
+    exhaustMap(() =>
       this.authService.logout().pipe(
         tap(() => this.router.navigate(['/sign-in'])),
         map(() => new LogoutComplete()),
@@ -180,12 +173,25 @@ export class AuthEffects {
     )
   );
 
-  @Effect()
-  signOutConfirmationOk$ = this.actions$.pipe(
-    ofType<SignOutConfirmationAccepted>(SignOutConfirmationActionTypes.Ok),
-    map(() => new SignOut())
+  // ==
+  // SignOutConfirmationAlert
+  // ==
+  @Effect({ dispatch: false })
+  signOutConfirmationAlertShow$ = this.actions$.pipe(
+    ofType<fromSignOutConfirmationAlertActions.Show>(
+      SignOutConfirmationAlertActionTypes.Show
+    ),
+    tap(() => this.signOutConfirmationAlertService.show())
   );
 
+  @Effect()
+  signOutConfirmationAccepted$ = this.actions$.pipe(
+    ofType<fromSignOutConfirmationAlertActions.Accepted>(
+      SignOutConfirmationAlertActionTypes.Accepted
+    ),
+    map(() => new SignOut())
+  );
+  // ==
   /*
   @Effect({ dispatch: false })
   logout$ = this.actions$
@@ -210,6 +216,6 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private signOutConfirmationAlertService: SignOutConfirmationAlertService,
+    private signOutConfirmationAlertService: SignOutConfirmationAlertService
   ) {}
 }

@@ -3,12 +3,6 @@ import { Action } from '@ngrx/store';
 import { Authenticate } from '../models/authentication.model';
 import { UserModel } from '../models/user.model';
 
-export enum SignOutConfirmationActionTypes {
-  Cancel = '[Sign Out Confirmation] Cancel',
-  Ok = '[Sign Out Confirmation] Ok',
-  Show = '[Sign Out Confirmation] Show',
-}
-
 export enum AuthActionTypes {
   AutoLogin = '[Auth API] Auto Login',
   AutoLoginSignedOut = '[Auth API] Auto Login Signed Out',
@@ -62,19 +56,7 @@ export class LoginFailure implements Action {
 export class SignOut implements Action {
   readonly type = AuthActionTypes.SignOut;
 }
-//
-export class SignOutConfirmationCancelled implements Action {
-  readonly type = SignOutConfirmationActionTypes.Cancel;
-}
 
-export class SignOutConfirmationAccepted implements Action {
-  readonly type = SignOutConfirmationActionTypes.Ok;
-}
-
-export class SignOutConfirmationShow implements Action {
-  readonly type = SignOutConfirmationActionTypes.Show;
-}
-//
 export class LogoutComplete implements Action {
   readonly type = AuthActionTypes.LogoutComplete;
 }
@@ -97,9 +79,6 @@ export type AuthActions =
   | Login
   | LoginSuccess
   | LoginFailure
-  | SignOutConfirmationShow
-  | SignOutConfirmationCancelled
-  | SignOutConfirmationAccepted
   | LogoutComplete
   | SignOut
   | SignUp
