@@ -84,8 +84,8 @@ export class AuthEffects {
   login$ = this.actions$.pipe(
     ofType<Login>(AuthActionTypes.Login),
     map((action) => action.payload),
-    exhaustMap((auth) =>
-      this.authService.login(auth).pipe(
+    exhaustMap((payload) =>
+      this.authService.login(payload.credentials).pipe(
         map((user) => new LoginSuccess({ user })),
         catchError((error) => of(new LoginFailure(error)))
       )

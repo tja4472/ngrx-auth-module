@@ -32,7 +32,7 @@ export class AuthFacade {
   constructor(private store: Store<State>) {}
 
   public signIn(credentials: Authenticate) {
-    this.store.dispatch(new Login(credentials));
+    this.store.dispatch(new Login({ credentials }));
   }
 
   public signUp(credentials: Authenticate) {

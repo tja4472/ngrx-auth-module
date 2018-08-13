@@ -39,7 +39,7 @@ export class DoSignUp implements Action {
 export class Login implements Action {
   readonly type = AuthActionTypes.Login;
 
-  constructor(public payload: Authenticate) {}
+  constructor(public payload: { credentials: Authenticate }) {}
 }
 
 export class LoginSuccess implements Action {
@@ -80,7 +80,7 @@ export type AuthActions =
   | Login
   | LoginSuccess
   | LoginFailure
-  | SignOut  
+  | SignOut
   | SignOutComplete
   | SignUp
   | SignUpFailure;
