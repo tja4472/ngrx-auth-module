@@ -13,10 +13,11 @@ import {
   take,
   tap,
 } from 'rxjs/operators';
-import { UserModel } from '../models/user.model';
 
-import { Authenticate } from '../models/authentication.model';
-import { UserInfoDataService } from './user-info.data.service';
+import { Authenticate } from '@app/auth/models/authentication.model';
+import { UserModel } from '@app/auth/models/user.model';
+
+import { UserInfoDataService } from '@app/auth/services/user-info.data.service';
 
 /*
 @Injectable({

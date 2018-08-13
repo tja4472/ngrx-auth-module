@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { TaskActionTypes } from '../actions/task.actions';
+
+import { TaskActionTypes } from '@app/task/actions/task.actions';
 
 @Injectable()
 export class TaskEffects {

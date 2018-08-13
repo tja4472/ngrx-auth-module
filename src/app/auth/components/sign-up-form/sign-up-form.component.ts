@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Authenticate } from '../../models/authentication.model';
+import { Authenticate } from '@app/auth/models/authentication.model';
 
 @Component({
   selector: 'tja-sign-up-form',

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuAuthComponent } from './menu-auth.component';
+import { MenuAuthComponent } from '@app/components/menu-auth/menu-auth.component';
 
 describe('MenuAuthComponent', () => {
   let component: MenuAuthComponent;

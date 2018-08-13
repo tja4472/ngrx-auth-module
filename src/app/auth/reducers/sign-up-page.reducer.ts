@@ -1,4 +1,4 @@
-import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
+import { AuthActions, AuthActionTypes } from '@app/auth/actions/auth.actions';
 
 export interface SignUpPageState {
   readonly pending: boolean;

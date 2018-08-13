@@ -1,4 +1,4 @@
-import { TaskModule } from './task.module';
+import { TaskModule } from '@app/task/task.module';
 
 describe('TaskModule', () => {
   let taskModule: TaskModule;

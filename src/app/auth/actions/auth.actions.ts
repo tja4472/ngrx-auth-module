@@ -1,7 +1,8 @@
 // tslint:disable:max-classes-per-file
 import { Action } from '@ngrx/store';
-import { Authenticate } from '../models/authentication.model';
-import { UserModel } from '../models/user.model';
+
+import { Authenticate } from '@app/auth/models/authentication.model';
+import { UserModel } from '@app/auth/models/user.model';
 
 export enum AuthActionTypes {
   AutoSignIn = '[Auth API] Auto Sign In',

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { ListPage } from './list.page';
+import { ListPage } from '@app/list/list.page';
 
 @NgModule({
   imports: [

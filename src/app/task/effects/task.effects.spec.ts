@@ -2,7 +2,7 @@ import { inject, TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { TaskEffects } from './task.effects';
+import { TaskEffects } from '@app/task/effects/task.effects';
 
 describe('TaskEffects', () => {
   // tslint:disable-next-line:prefer-const

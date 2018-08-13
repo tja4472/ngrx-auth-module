@@ -6,9 +6,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { EffectsModule } from '@ngrx/effects';
 
-import { HomePage } from './home.page';
+import { HomePage } from '@app/home/home.page';
 
-import { HomePageEffects } from './effects/home-page.effects';
+import { HomePageEffects } from '@app/home/effects/home-page.effects';
 
 @NgModule({
   imports: [

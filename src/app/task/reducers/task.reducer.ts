@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { TaskActions, TaskActionTypes } from '../actions/task.actions';
+
+import { TaskActions, TaskActionTypes } from '@app/task/actions/task.actions';
 
 // tslint:disable-next-line:no-empty-interface
 export interface State {}

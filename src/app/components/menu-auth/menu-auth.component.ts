@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { UserModel } from '../../auth/models/user.model';
+import { UserModel } from '@app/auth/models/user.model';
 
 @Component({
   selector: 'tja-menu-auth',

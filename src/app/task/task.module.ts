@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { TaskEffects } from './effects/task.effects';
-import * as fromTask from './reducers/task.reducer';
-import { TaskRoutingModule } from './task-routing.module';
+
+import { TaskEffects } from '@app/task/effects/task.effects';
+import * as fromTask from '@app/task/reducers/task.reducer';
+import { TaskRoutingModule } from '@app/task/task-routing.module';
 
 @NgModule({
   imports: [

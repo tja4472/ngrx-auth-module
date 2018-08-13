@@ -6,9 +6,10 @@ import { map, take } from 'rxjs/operators';
 
 // tslint:disable-next-line:no-submodule-imports
 import { AngularFirestore } from 'angularfire2/firestore';
-import { newUserInfo, UserInfo } from '../models/user-info.model';
 
-import { environment } from '../../../environments/environment';
+import { newUserInfo, UserInfo } from '@app/auth/models/user-info.model';
+
+import { environment } from 'environments/environment';
 
 const APP_KEY = 'apps/' + environment.appCode;
 const USERS_COLLECTION = APP_KEY + '/users';

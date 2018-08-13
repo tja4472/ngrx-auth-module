@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import * as fromHomePageActions from '../actions/home-page.actions';
+import * as fromHomePageActions from '@app/home/actions/home-page.actions';
 
 import { map } from 'rxjs/operators';
 

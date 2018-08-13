@@ -9,13 +9,13 @@ import {
 // tslint:disable-next-line:no-submodule-imports
 import { AngularFireAuth } from 'angularfire2/auth';
 
-import { AuthService } from './auth.service';
+import { AuthService } from '@app/auth/services/auth.service';
 
 import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, exhaustMap, filter, map, take, tap } from 'rxjs/operators';
 
-import * as fromAuth from '../reducers';
+import * as fromAuth from '@app/auth/reducers';
 
 import { authQuery } from '@app/auth/selectors/auth.selectors';
 
