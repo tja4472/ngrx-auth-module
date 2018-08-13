@@ -13,5 +13,5 @@
   <tja-sign-in-form [error]="error$ | async"
                     [disabled]="pending$ | async"
                     (SignUpClicked)="onSignUp()"
-                    (submitted)="onLogin($event)"></tja-sign-in-form>
+                    (submitted)="onSubmitted($event)"></tja-sign-in-form>
 </ion-content>

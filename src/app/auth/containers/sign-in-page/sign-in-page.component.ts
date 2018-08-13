@@ -16,7 +16,7 @@ export class SignInPageComponent implements OnInit {
 
   ngOnInit() {}
 
-  onLogin(credentials: Authenticate) {
+  onSubmitted(credentials: Authenticate) {
     this.authFacade.signIn(credentials);
   }
 
