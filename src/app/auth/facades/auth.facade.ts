@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { DoSignUp, Login, SignUp } from '@app/auth/actions/auth.actions';
+import { DoSignUp, SignUp } from '@app/auth/actions/auth.actions';
+import { SignIn } from '@app/auth/actions/sign-in-page.actions';
+
 import { Authenticate } from '@app/auth/models/authentication.model';
 import { State } from '@app/auth/reducers';
 import { authQuery } from '@app/auth/selectors/auth.selectors';
 import { signInPageQuery } from '@app/auth/selectors/sign-in-page.selectors';
 import { signUpPageQuery } from '@app/auth/selectors/sign-up-page.selectors';
+
 
 @Injectable()
 export class AuthFacade {
@@ -31,8 +34,8 @@ export class AuthFacade {
 
   constructor(private store: Store<State>) {}
 
-  public signIn(credentials: Authenticate) {
-    this.store.dispatch(new Login({ credentials }));
+  public signInPageSignIn(credentials: Authenticate) {
+    this.store.dispatch(new SignIn({ credentials }));
   }
 
   public signUp(credentials: Authenticate) {

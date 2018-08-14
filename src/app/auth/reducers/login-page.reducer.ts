@@ -1,4 +1,7 @@
-import { AuthActions, AuthActionTypes } from '@app/auth/actions/auth.actions';
+import {
+  SignInPageActions,
+  SignInPageActionTypes,
+} from '@app/auth/actions/sign-in-page.actions';
 
 export interface LoginPageState {
   pending: boolean;
@@ -12,19 +15,19 @@ export const initialState: LoginPageState = {
 
 export function loginPageReducer(
   state = initialState,
-  action: AuthActions
+  action: SignInPageActions
 ): LoginPageState {
   switch (action.type) {
-    case AuthActionTypes.Login: {
+    case SignInPageActionTypes.SignIn: {
       return { ...state, pending: true };
     }
 
-    case AuthActionTypes.LoginSuccess: {
+    case SignInPageActionTypes.SignInSuccess: {
       return initialState;
     }
 
-    case AuthActionTypes.LoginFailure: {
-      return { ...state, error: action.payload, pending: false };
+    case SignInPageActionTypes.SignInFailure: {
+      return { ...state, error: action.payload.error, pending: false };
     }
 
     default: {

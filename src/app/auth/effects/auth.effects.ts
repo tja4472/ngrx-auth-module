@@ -11,9 +11,9 @@ import {
   AutoSignInHaveUser,
   AutoSignInNoUser,
   DoSignUp,
-  Login,
   LoginFailure,
   LoginSuccess,
+  SignIn,
   SignOut,
   SignOutComplete,
   SignUp,
@@ -21,10 +21,13 @@ import {
 } from '@app/auth/actions/auth.actions';
 
 // tslint:disable:no-duplicate-imports
+import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
+import { SignInPageActionTypes } from '@app/auth/actions/sign-in-page.actions';
+// tslint:enable:no-duplicate-imports
+
+// tslint:disable:no-duplicate-imports
 import * as fromSignOutConfirmationAlertActions from '@app/auth/actions/sign-out-confirmation-alert.actions';
-import {
-  SignOutConfirmationAlertActionTypes,
-} from '@app/auth/actions/sign-out-confirmation-alert.actions';
+import { SignOutConfirmationAlertActionTypes } from '@app/auth/actions/sign-out-confirmation-alert.actions';
 // tslint:enable:no-duplicate-imports
 
 import { AuthService } from '@app/auth/services/auth.service';
@@ -81,8 +84,8 @@ export class AuthEffects {
   );
 
   @Effect()
-  login$ = this.actions$.pipe(
-    ofType<Login>(AuthActionTypes.Login),
+  authSignIn$ = this.actions$.pipe(
+    ofType<SignIn>(AuthActionTypes.SignIn),
     map((action) => action.payload),
     exhaustMap((payload) =>
       this.authService.login(payload.credentials).pipe(
@@ -92,6 +95,40 @@ export class AuthEffects {
     )
   );
 
+  @Effect()
+  signInPageSignIn$ = this.actions$.pipe(
+    ofType<fromSignInPageActions.SignIn>(SignInPageActionTypes.SignIn),
+    map(({ payload }) => new SignIn(payload))
+  );
+
+  @Effect()
+  signInPageSignInFailure$ = this.actions$.pipe(
+    ofType<LoginFailure>(AuthActionTypes.LoginFailure),
+    map(
+      ({ payload }) =>
+        new fromSignInPageActions.SignInFailure({ error: payload })
+    )
+  );
+
+  @Effect()
+  signInPageSignInSuccess$ = this.actions$.pipe(
+    ofType<LoginSuccess>(AuthActionTypes.LoginSuccess),
+    map(
+      ({ payload }) =>
+        new fromSignInPageActions.SignInSuccess({ user: payload.user })
+    ),
+    tap(() => {
+      if (this.authService.redirectUrl === '') {
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate([this.authService.redirectUrl]);
+      }
+    })   
+  );
+
+
+
+  /*
   @Effect({ dispatch: false })
   loginRedirect$ = this.actions$.pipe(
     ofType<LoginSuccess>(AuthActionTypes.LoginSuccess),
@@ -105,6 +142,7 @@ export class AuthEffects {
       }
     })
   );
+*/
 
   /*
   @Effect()
@@ -167,7 +205,7 @@ export class AuthEffects {
     exhaustMap(() =>
       this.authService.signOut().pipe(
         tap(() => this.router.navigate(['/sign-in'])),
-        map(() => new SignOutComplete()),
+        map(() => new SignOutComplete())
         // catchError(() => of(new SignOutComplete()))
       )
     )

@@ -1,7 +1,6 @@
 // tslint:disable:max-classes-per-file
 /*
  * Call using:
- *  import * as fromSignOutConfirmationAlertActions from '@app/auth/actions/sign-out-confirmation-alert.actions';
  // tslint:disable:no-duplicate-imports
 import * as fromSignOutConfirmationAlertActions from '@app/auth/actions/sign-out-confirmation-alert.actions';
 import {
@@ -30,7 +29,4 @@ export class Show implements Action {
   readonly type = SignOutConfirmationAlertActionTypes.Show;
 }
 
-export type SignOutConfirmationAlertActions =
-  | Show
-  | Cancelled
-  | Accepted;
+export type SignOutConfirmationAlertActions = Show | Cancelled | Accepted;

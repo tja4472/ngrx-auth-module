@@ -10,9 +10,10 @@ export enum AuthActionTypes {
   AutoSignInNoUser = '[Auth API] Auto Sign In - No User',
   //
   DoSignUp = '[Auth] Do Sign Up',
-  Login = '[Login Page] Login',
+
   LoginSuccess = '[Auth API] Login - Success',
   LoginFailure = '[Auth API] Login - Failure',
+  SignIn = '[Auth API] Sign In',
   SignOut = '[Auth API] Sign Out',
   SignOutComplete = '[Auth API] Sign Out - Complete',
   SignUp = '[Auth] Sign Up',
@@ -37,12 +38,6 @@ export class DoSignUp implements Action {
   readonly type = AuthActionTypes.DoSignUp;
 }
 
-export class Login implements Action {
-  readonly type = AuthActionTypes.Login;
-
-  constructor(public payload: { credentials: Authenticate }) {}
-}
-
 export class LoginSuccess implements Action {
   readonly type = AuthActionTypes.LoginSuccess;
 
@@ -53,6 +48,12 @@ export class LoginFailure implements Action {
   readonly type = AuthActionTypes.LoginFailure;
 
   constructor(public payload: any) {}
+}
+
+export class SignIn implements Action {
+  readonly type = AuthActionTypes.SignIn;
+
+  constructor(public payload: { credentials: Authenticate }) {}
 }
 
 export class SignOut implements Action {
@@ -78,9 +79,9 @@ export class SignUpFailure implements Action {
 export type AuthActions =
   | AutoSignInHaveUser
   | AutoSignInNoUser
-  | Login
   | LoginSuccess
   | LoginFailure
+  | SignIn
   | SignOut
   | SignOutComplete
   | SignUp
