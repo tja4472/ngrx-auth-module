@@ -9,15 +9,18 @@ export enum AuthActionTypes {
   AutoSignInHaveUser = '[Auth API] Auto Sign In - Have User',
   AutoSignInNoUser = '[Auth API] Auto Sign In - No User',
   //
-  DoSignUp = '[Auth] Do Sign Up',
-
-  LoginSuccess = '[Auth API] Login - Success',
-  LoginFailure = '[Auth API] Login - Failure',
+  ShowSignUpPage = '[Auth] Show Sign Up Page',
+  //
   SignIn = '[Auth API] Sign In',
+  SignInSuccess = '[Auth API] Sign In - Success',
+  SignInFailure = '[Auth API] Sign In - Failure',
+  //
   SignOut = '[Auth API] Sign Out',
   SignOutComplete = '[Auth API] Sign Out - Complete',
+  //
   SignUp = '[Auth] Sign Up',
   SignUpFailure = '[Auth] Sign Up - Failure',
+  SignUpSuccess = '[Auth] Sign Up - Success',
 }
 
 export class AutoSignIn implements Action {
@@ -34,26 +37,26 @@ export class AutoSignInNoUser implements Action {
   readonly type = AuthActionTypes.AutoSignInNoUser;
 }
 
-export class DoSignUp implements Action {
-  readonly type = AuthActionTypes.DoSignUp;
-}
-
-export class LoginSuccess implements Action {
-  readonly type = AuthActionTypes.LoginSuccess;
-
-  constructor(public payload: { user: UserModel }) {}
-}
-
-export class LoginFailure implements Action {
-  readonly type = AuthActionTypes.LoginFailure;
-
-  constructor(public payload: any) {}
+export class ShowSignUpPage implements Action {
+  readonly type = AuthActionTypes.ShowSignUpPage;
 }
 
 export class SignIn implements Action {
   readonly type = AuthActionTypes.SignIn;
 
-  constructor(public payload: { credentials: Authenticate }) {}
+  constructor(readonly payload: { credentials: Authenticate }) {}
+}
+
+export class SignInSuccess implements Action {
+  readonly type = AuthActionTypes.SignInSuccess;
+
+  constructor(readonly payload: { user: UserModel }) {}
+}
+
+export class SignInFailure implements Action {
+  readonly type = AuthActionTypes.SignInFailure;
+
+  constructor(readonly payload: { error: any }) {}
 }
 
 export class SignOut implements Action {
@@ -67,22 +70,29 @@ export class SignOutComplete implements Action {
 export class SignUp implements Action {
   readonly type = AuthActionTypes.SignUp;
 
-  constructor(public payload: Authenticate) {}
+  constructor(readonly payload: { credentials: Authenticate }) {}
 }
 
 export class SignUpFailure implements Action {
   readonly type = AuthActionTypes.SignUpFailure;
 
-  constructor(public payload: any) {}
+  constructor(readonly payload: { error: any }) {}
+}
+
+export class SignUpSuccess implements Action {
+  readonly type = AuthActionTypes.SignUpSuccess;
+
+  constructor(readonly payload: { user: UserModel }) {}
 }
 
 export type AuthActions =
   | AutoSignInHaveUser
   | AutoSignInNoUser
-  | LoginSuccess
-  | LoginFailure
+  | SignInSuccess
+  | SignInFailure
   | SignIn
   | SignOut
   | SignOutComplete
   | SignUp
-  | SignUpFailure;
+  | SignUpFailure
+  | SignUpSuccess;

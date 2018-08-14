@@ -69,7 +69,14 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootAuthModule,
-      providers: [SignOutConfirmationAlertFacade, SignOutConfirmationAlertService, AuthFacade, AuthService, AuthGuardService, UserInfoDataService],
+      providers: [
+        SignOutConfirmationAlertFacade,
+        SignOutConfirmationAlertService,
+        AuthFacade,
+        AuthService,
+        AuthGuardService,
+        UserInfoDataService,
+      ],
     };
   }
 }

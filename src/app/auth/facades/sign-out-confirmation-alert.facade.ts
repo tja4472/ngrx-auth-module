@@ -15,14 +15,10 @@ export class SignOutConfirmationAlertFacade {
   }
 
   public Cancelled() {
-    this.store.dispatch(
-      new fromSignOutConfirmationAlertActions.Cancelled()
-    );
+    this.store.dispatch(new fromSignOutConfirmationAlertActions.Cancelled());
   }
 
   public Show() {
-    this.store.dispatch(
-      new fromSignOutConfirmationAlertActions.Show()
-    );
+    this.store.dispatch(new fromSignOutConfirmationAlertActions.Show());
   }
 }

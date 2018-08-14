@@ -13,19 +13,19 @@ export enum SignInPageActionTypes {
 export class SignIn implements Action {
   readonly type = SignInPageActionTypes.SignIn;
 
-  constructor(public payload: { credentials: Authenticate }) {}
+  constructor(readonly payload: { credentials: Authenticate }) {}
 }
 
 export class SignInFailure implements Action {
   readonly type = SignInPageActionTypes.SignInFailure;
 
-  constructor(public payload: { error: any }) {}
+  constructor(readonly payload: { error: any }) {}
 }
 
 export class SignInSuccess implements Action {
   readonly type = SignInPageActionTypes.SignInSuccess;
 
-  constructor(public payload: { user: UserModel }) {}
+  constructor(readonly payload: { user: UserModel }) {}
 }
 
 export type SignInPageActions = SignIn | SignInFailure | SignInSuccess;

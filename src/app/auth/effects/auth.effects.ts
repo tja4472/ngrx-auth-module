@@ -10,19 +10,25 @@ import {
   AutoSignIn,
   AutoSignInHaveUser,
   AutoSignInNoUser,
-  DoSignUp,
-  LoginFailure,
-  LoginSuccess,
+  ShowSignUpPage,
   SignIn,
+  SignInFailure,
+  SignInSuccess,
   SignOut,
   SignOutComplete,
   SignUp,
   SignUpFailure,
+  SignUpSuccess,
 } from '@app/auth/actions/auth.actions';
 
 // tslint:disable:no-duplicate-imports
 import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
 import { SignInPageActionTypes } from '@app/auth/actions/sign-in-page.actions';
+// tslint:enable:no-duplicate-imports
+
+// tslint:disable:no-duplicate-imports
+import * as fromSignUpPageActions from '@app/auth/actions/sign-up-page.actions';
+import { SignUpPageActionTypes } from '@app/auth/actions/sign-up-page.actions';
 // tslint:enable:no-duplicate-imports
 
 // tslint:disable:no-duplicate-imports
@@ -53,7 +59,7 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   doSignUp$ = this.actions$.pipe(
-    ofType<DoSignUp>(AuthActionTypes.DoSignUp),
+    ofType<ShowSignUpPage>(AuthActionTypes.ShowSignUpPage),
     tap(() => {
       this.router.navigate(['/sign-up']);
     })
@@ -72,27 +78,42 @@ export class AuthEffects {
   */
 
   @Effect()
-  signUp$ = this.actions$.pipe(
-    ofType<SignUp>(AuthActionTypes.SignUp),
-    map((action) => action.payload),
-    exhaustMap((auth) =>
-      this.authService.signUp(auth).pipe(
-        map((user) => new LoginSuccess({ user })),
-        catchError((error) => of(new SignUpFailure(error)))
-      )
-    )
-  );
-
-  @Effect()
   authSignIn$ = this.actions$.pipe(
     ofType<SignIn>(AuthActionTypes.SignIn),
     map((action) => action.payload),
     exhaustMap((payload) =>
       this.authService.login(payload.credentials).pipe(
-        map((user) => new LoginSuccess({ user })),
-        catchError((error) => of(new LoginFailure(error)))
+        map((user) => new SignInSuccess({ user })),
+        catchError((error) => of(new SignInFailure(error)))
       )
     )
+  );
+
+  @Effect()
+  authSignUp$ = this.actions$.pipe(
+    ofType<SignUp>(AuthActionTypes.SignUp),
+    map((action) => action.payload),
+    exhaustMap((payload) =>
+      this.authService.signUp(payload.credentials).pipe(
+        map((user) => new SignUpSuccess({ user })),
+        catchError((error) => of(new SignUpFailure(error)))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  authSignInSuccess$ = this.actions$.pipe(
+    ofType<SignInSuccess | SignUpSuccess>(
+      AuthActionTypes.SignInSuccess,
+      AuthActionTypes.SignUpSuccess
+    ),
+    tap(() => {
+      if (this.authService.redirectUrl === '') {
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate([this.authService.redirectUrl]);
+      }
+    })
   );
 
   @Effect()
@@ -103,7 +124,7 @@ export class AuthEffects {
 
   @Effect()
   signInPageSignInFailure$ = this.actions$.pipe(
-    ofType<LoginFailure>(AuthActionTypes.LoginFailure),
+    ofType<SignInFailure>(AuthActionTypes.SignInFailure),
     map(
       ({ payload }) =>
         new fromSignInPageActions.SignInFailure({ error: payload })
@@ -112,21 +133,36 @@ export class AuthEffects {
 
   @Effect()
   signInPageSignInSuccess$ = this.actions$.pipe(
-    ofType<LoginSuccess>(AuthActionTypes.LoginSuccess),
+    ofType<SignInSuccess>(AuthActionTypes.SignInSuccess),
     map(
       ({ payload }) =>
         new fromSignInPageActions.SignInSuccess({ user: payload.user })
-    ),
-    tap(() => {
-      if (this.authService.redirectUrl === '') {
-        this.router.navigate(['/']);
-      } else {
-        this.router.navigate([this.authService.redirectUrl]);
-      }
-    })   
+    )
   );
 
+  @Effect()
+  signUpPageSignUp$ = this.actions$.pipe(
+    ofType<fromSignUpPageActions.SignUp>(SignUpPageActionTypes.SignUp),
+    map(({ payload }) => new SignUp(payload))
+  );
 
+  @Effect()
+  signUpPageSignUpFailure$ = this.actions$.pipe(
+    ofType<SignUpFailure>(AuthActionTypes.SignUpFailure),
+    map(
+      ({ payload }) =>
+        new fromSignUpPageActions.SignUpFailure({ error: payload })
+    )
+  );
+
+  @Effect()
+  signUpPageSignUpSuccess$ = this.actions$.pipe(
+    ofType<SignUpSuccess>(AuthActionTypes.SignUpSuccess),
+    map(
+      ({ payload }) =>
+        new fromSignUpPageActions.SignUpSuccess({ user: payload.user })
+    )
+  );
 
   /*
   @Effect({ dispatch: false })

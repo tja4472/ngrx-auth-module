@@ -20,8 +20,9 @@ export function authReducer(
     case AuthActionTypes.AutoSignInNoUser:
       return { ...state, hasChecked: true };
 
-    case AuthActionTypes.LoginSuccess:
+    case AuthActionTypes.SignInSuccess:
     case AuthActionTypes.AutoSignInHaveUser:
+    case AuthActionTypes.SignUpSuccess:
       return { ...state, hasChecked: true, user: action.payload.user };
 
     case AuthActionTypes.SignOut:

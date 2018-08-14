@@ -27,10 +27,7 @@ export class AppComponent {
 
   public user$: Observable<UserModel>;
 
-  constructor(
-    private authFacade: AuthFacade,
-    private platform: Platform,
-  ) {
+  constructor(private authFacade: AuthFacade, private platform: Platform) {
     this.user$ = this.authFacade.authUser$;
 
     this.initializeApp();
