@@ -23,7 +23,7 @@ export class SignUpFormComponent implements OnInit {
   }
 
   @Output()
-  submitted = new EventEmitter<Authenticate>();
+  readonly submitted = new EventEmitter<Authenticate>();
 
   public loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),

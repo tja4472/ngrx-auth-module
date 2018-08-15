@@ -23,10 +23,10 @@ export class SignInFormComponent implements OnInit {
   }
 
   @Output()
-  SignUpClicked = new EventEmitter();
+  readonly SignUpClicked = new EventEmitter();
 
   @Output()
-  submitted = new EventEmitter<Authenticate>();
+  readonly submitted = new EventEmitter<Authenticate>();
 
   get password() {
     return this.loginForm.get('password');
