@@ -37,7 +37,7 @@ export class SignOutConfirmationAlertService {
         },
       ],
       header: 'Sign Out',
-      enableBackdropDismiss: false,
+      backdropDismiss: false,
       message: 'Are you sure you want to sign out?',
     };
     const alert = await this.alertCtrl.create(options);
