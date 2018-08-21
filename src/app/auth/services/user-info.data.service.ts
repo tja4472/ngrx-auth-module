@@ -1,3 +1,4 @@
+// tslint:disable:max-classes-per-file
 import { Injectable } from '@angular/core';
 // import { Observable } from 'rxjs/Observable';
 // import { map } from 'rxjs/operators/map';
@@ -8,14 +9,41 @@ import { map, take } from 'rxjs/operators';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 import { newUserInfo, UserInfo } from '@app/auth/models/user-info.model';
+import { EnvironmentService } from '@app/core/environment.service';
 
-import { environment } from 'environments/environment';
-
+/*
 const APP_KEY = 'apps/' + environment.appCode;
 const USERS_COLLECTION = APP_KEY + '/users';
-
-interface FirestoreDoc {
+*/
+export interface FirestoreDoc {
   todoListId: string;
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ConvertService {
+  public toFirestoreDoc(item: UserInfo): FirestoreDoc {
+    //
+    const result: FirestoreDoc = {
+      todoListId: item.todoListId,
+    };
+
+    return result;
+  }
+
+  public fromFirestoreDoc(x: FirestoreDoc | null): UserInfo | null {
+    //
+    if (x == null) {
+      return null;
+    }
+
+    const result: UserInfo = {
+      todoListId: x.todoListId,
+    };
+
+    return result;
+  }
 }
 
 /*
@@ -25,9 +53,24 @@ interface FirestoreDoc {
 */
 @Injectable()
 export class UserInfoDataService {
+  public get usersCollectionPath(): string {
+    return 'apps/' + this.environmentService.appCode + '/users';
+  }
   //
-  constructor(public readonly afs: AngularFirestore) {
+  // Inject fromFirestoreDoc/toFirestoreDoc class?
+  //
+  constructor(
+    public readonly afs: AngularFirestore,
+    private readonly convertService: ConvertService,
+    public readonly environmentService: EnvironmentService
+  ) {
     console.log('UserInfoDataService:constructor');
+    console.log(
+      'environmentService.settings.appCode>',
+      environmentService.settings.appCode
+    );
+    console.log('environmentService.appCode>', environmentService.appCode);
+    // console.log('USERS_COLLECTION>', USERS_COLLECTION);
   }
 
   public async getUserData(userId: string): Promise<UserInfo> {
@@ -74,7 +117,7 @@ export class UserInfoDataService {
     //
     return this.firestoreDocument(userId)
       .valueChanges()
-      .pipe(map((item) => this.fromFirestoreDoc(item)));
+      .pipe(map((item) => this.convertService.fromFirestoreDoc(item)));
   }
 
   public save(item: UserInfo, userId: string): Promise<void> {
@@ -90,7 +133,10 @@ export class UserInfoDataService {
 
   private firestoreDocument(userId: string) {
     //
-    return this.afs.collection(USERS_COLLECTION).doc<FirestoreDoc>(userId);
+    return this.afs
+      .collection(this.usersCollectionPath)
+      .doc<FirestoreDoc>(userId);
+    // return this.afs.doc<FirestoreDoc>(this.usersCollectionPath + '/' + userId);
   }
 
   private toFirestoreDoc(item: UserInfo): FirestoreDoc {
@@ -102,6 +148,7 @@ export class UserInfoDataService {
     return result;
   }
 
+  /*
   private fromFirestoreDoc(x: FirestoreDoc | null): UserInfo | null {
     //
     console.log('ZZZZZZZZZZZZZZZZZ>', x);
@@ -116,4 +163,5 @@ export class UserInfoDataService {
 
     return result;
   }
+  */
 }
