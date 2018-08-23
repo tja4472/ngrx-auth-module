@@ -38,7 +38,7 @@ import { AuthModule } from '@app/auth/auth.module';
     // AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
-    AuthModule.forRoot(),
+    AuthModule,
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router', // name of reducer key
     }),

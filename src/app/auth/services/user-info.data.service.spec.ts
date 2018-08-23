@@ -56,7 +56,7 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
     TestBed.configureTestingModule({
       // Provide both the service-to-test and its dependencies.
       providers: [
-        UserInfoDataService,
+        // UserInfoDataServiceA,
         EnvironmentService,
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
@@ -97,7 +97,7 @@ describe('UserInfoDataService - angularFirestoreSpy', () => {
     TestBed.configureTestingModule({
       // Provide both the service-to-test and its dependencies.
       providers: [
-        UserInfoDataService,
+        // UserInfoDataServiceA,
         EnvironmentService,
         { provide: AngularFirestore, useValue: angularFirestoreSpy },
       ],

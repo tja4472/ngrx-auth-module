@@ -6,7 +6,9 @@ import * as fromSignOutConfirmationAlertActions from '@app/auth/actions/sign-out
 
 import { State } from '@app/auth/reducers';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SignOutConfirmationAlertFacade {
   constructor(private store: Store<State>) {}
 

@@ -19,12 +19,9 @@ import { UserModel } from '@app/auth/models/user.model';
 
 import { UserInfoDataService } from '@app/auth/services/user-info.data.service';
 
-/*
 @Injectable({
   providedIn: 'root',
 })
-*/
-@Injectable()
 export class AuthService {
   public redirectUrl = '';
 

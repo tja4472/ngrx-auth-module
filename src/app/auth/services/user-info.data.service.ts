@@ -46,12 +46,9 @@ export class ConvertService {
   }
 }
 
-/*
 @Injectable({
   providedIn: 'root',
 })
-*/
-@Injectable()
 export class UserInfoDataService {
   public get usersCollectionPath(): string {
     return 'apps/' + this.environmentService.appCode + '/users';

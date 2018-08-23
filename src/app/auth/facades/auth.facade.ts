@@ -12,7 +12,9 @@ import { authQuery } from '@app/auth/selectors/auth.selectors';
 import { signInPageQuery } from '@app/auth/selectors/sign-in-page.selectors';
 import { signUpPageQuery } from '@app/auth/selectors/sign-up-page.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthFacade {
   public authUser$ = this.store.pipe(select(authQuery.selectAuthUser));
 
