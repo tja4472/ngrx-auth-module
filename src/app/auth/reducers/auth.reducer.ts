@@ -1,4 +1,4 @@
-import { AuthActions, AuthActionTypes } from '@app/auth/actions/auth.actions';
+import { AuthApiActionsUnion, AuthApiActionTypes } from '@app/auth/actions/auth-api.actions';
 import { UserModel } from '@app/auth/models/user.model';
 
 export interface AuthState
@@ -14,18 +14,18 @@ export const initialState: AuthState = {
 
 export function authReducer(
   state = initialState,
-  action: AuthActions
+  action: AuthApiActionsUnion
 ): AuthState {
   switch (action.type) {
-    case AuthActionTypes.AutoSignInNoUser:
+    case AuthApiActionTypes.AutoSignInNoUser:
       return { ...state, hasChecked: true };
 
-    case AuthActionTypes.SignInSuccess:
-    case AuthActionTypes.AutoSignInHaveUser:
-    case AuthActionTypes.SignUpSuccess:
+    case AuthApiActionTypes.SignInSuccess:
+    case AuthApiActionTypes.AutoSignInHaveUser:
+    case AuthApiActionTypes.SignUpSuccess:
       return { ...state, hasChecked: true, user: action.payload.user };
 
-    case AuthActionTypes.SignOut:
+    case AuthApiActionTypes.SignOut:
       return { ...initialState, hasChecked: true };
 
     default:

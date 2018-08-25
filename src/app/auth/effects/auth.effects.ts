@@ -6,7 +6,7 @@ import { defer, from, Observable, of } from 'rxjs';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 
 import {
-  AuthActionTypes,
+  AuthApiActionTypes,
   AutoSignIn,
   AutoSignInHaveUser,
   AutoSignInNoUser,
@@ -19,7 +19,7 @@ import {
   SignUp,
   SignUpFailure,
   SignUpSuccess,
-} from '@app/auth/actions/auth.actions';
+} from '@app/auth/actions/auth-api.actions';
 
 // tslint:disable:no-duplicate-imports
 import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
@@ -43,7 +43,7 @@ import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-con
 export class AuthEffects {
   @Effect()
   autoSignIn$ = this.actions$.pipe(
-    ofType<AutoSignIn>(AuthActionTypes.AutoSignIn),
+    ofType<AutoSignIn>(AuthApiActionTypes.AutoSignIn),
     exhaustMap(() =>
       this.authService.autoSignIn().pipe(
         map((user) => {
@@ -59,7 +59,7 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   doSignUp$ = this.actions$.pipe(
-    ofType<ShowSignUpPage>(AuthActionTypes.ShowSignUpPage),
+    ofType<ShowSignUpPage>(AuthApiActionTypes.ShowSignUpPage),
     tap(() => {
       this.router.navigate(['/sign-up']);
     })
@@ -79,7 +79,7 @@ export class AuthEffects {
 
   @Effect()
   authSignIn$ = this.actions$.pipe(
-    ofType<SignIn>(AuthActionTypes.SignIn),
+    ofType<SignIn>(AuthApiActionTypes.SignIn),
     map((action) => action.payload),
     exhaustMap((payload) =>
       this.authService.login(payload.credentials).pipe(
@@ -91,7 +91,7 @@ export class AuthEffects {
 
   @Effect()
   authSignUp$ = this.actions$.pipe(
-    ofType<SignUp>(AuthActionTypes.SignUp),
+    ofType<SignUp>(AuthApiActionTypes.SignUp),
     map((action) => action.payload),
     exhaustMap((payload) =>
       this.authService.signUp(payload.credentials).pipe(
@@ -104,8 +104,8 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   authSignInSuccess$ = this.actions$.pipe(
     ofType<SignInSuccess | SignUpSuccess>(
-      AuthActionTypes.SignInSuccess,
-      AuthActionTypes.SignUpSuccess
+      AuthApiActionTypes.SignInSuccess,
+      AuthApiActionTypes.SignUpSuccess
     ),
     tap(() => {
       if (this.authService.redirectUrl === '') {
@@ -124,7 +124,7 @@ export class AuthEffects {
 
   @Effect()
   signInPageSignInFailure$ = this.actions$.pipe(
-    ofType<SignInFailure>(AuthActionTypes.SignInFailure),
+    ofType<SignInFailure>(AuthApiActionTypes.SignInFailure),
     map(
       ({ payload }) =>
         new fromSignInPageActions.SignInFailure({ error: payload })
@@ -133,7 +133,7 @@ export class AuthEffects {
 
   @Effect()
   signInPageSignInSuccess$ = this.actions$.pipe(
-    ofType<SignInSuccess>(AuthActionTypes.SignInSuccess),
+    ofType<SignInSuccess>(AuthApiActionTypes.SignInSuccess),
     map(
       ({ payload }) =>
         new fromSignInPageActions.SignInSuccess({ user: payload.user })
@@ -148,7 +148,7 @@ export class AuthEffects {
 
   @Effect()
   signUpPageSignUpFailure$ = this.actions$.pipe(
-    ofType<SignUpFailure>(AuthActionTypes.SignUpFailure),
+    ofType<SignUpFailure>(AuthApiActionTypes.SignUpFailure),
     map(
       ({ payload }) =>
         new fromSignUpPageActions.SignUpFailure({ error: payload })
@@ -157,7 +157,7 @@ export class AuthEffects {
 
   @Effect()
   signUpPageSignUpSuccess$ = this.actions$.pipe(
-    ofType<SignUpSuccess>(AuthActionTypes.SignUpSuccess),
+    ofType<SignUpSuccess>(AuthApiActionTypes.SignUpSuccess),
     map(
       ({ payload }) =>
         new fromSignUpPageActions.SignUpSuccess({ user: payload.user })
@@ -237,7 +237,7 @@ export class AuthEffects {
 
   @Effect()
   signOut$ = this.actions$.pipe(
-    ofType<SignOut>(AuthActionTypes.SignOut),
+    ofType<SignOut>(AuthApiActionTypes.SignOut),
     exhaustMap(() =>
       this.authService.signOut().pipe(
         tap(() => this.router.navigate(['/sign-in'])),
