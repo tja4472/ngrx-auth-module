@@ -11,7 +11,6 @@ import {
   AutoSignInHaveUser,
   AutoSignInNoUser,
   ShowSignUpPage,
-  SignIn,
   SignInFailure,
   SignInSuccess,
   SignOut,
@@ -21,20 +20,9 @@ import {
   SignUpSuccess,
 } from '@app/auth/actions/auth-api.actions';
 
-// tslint:disable:no-duplicate-imports
 import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
-import { SignInPageActionTypes } from '@app/auth/actions/sign-in-page.actions';
-// tslint:enable:no-duplicate-imports
-
-// tslint:disable:no-duplicate-imports
-import * as fromSignUpPageActions from '@app/auth/actions/sign-up-page.actions';
-import { SignUpPageActionTypes } from '@app/auth/actions/sign-up-page.actions';
-// tslint:enable:no-duplicate-imports
-
-// tslint:disable:no-duplicate-imports
 import * as fromSignOutConfirmationAlertActions from '@app/auth/actions/sign-out-confirmation-alert.actions';
-import { SignOutConfirmationAlertActionTypes } from '@app/auth/actions/sign-out-confirmation-alert.actions';
-// tslint:enable:no-duplicate-imports
+import * as fromSignUpPageActions from '@app/auth/actions/sign-up-page.actions';
 
 import { AuthService } from '@app/auth/services/auth.service';
 import { SignOutConfirmationAlertService } from '@app/auth/services/sign-out-confirmation-alert.service';
@@ -65,21 +53,11 @@ export class AuthEffects {
     })
   );
 
-  /*    
-  @Effect({ dispatch: false })
-  signUp$ = this.actions$
-    .ofType<SignUp>(AuthActionTypes.SignUp)
-    .pipe(
-      map((action) => action.payload),
-      tap((auth) => {
-        this.authService.signUp(auth);
-      })
-    );
-  */
-
   @Effect()
-  authSignIn$ = this.actions$.pipe(
-    ofType<SignIn>(AuthApiActionTypes.SignIn),
+  signIn$ = this.actions$.pipe(
+    ofType<fromSignInPageActions.SignIn>(
+      fromSignInPageActions.SignInPageActionTypes.SignIn
+    ),
     map((action) => action.payload),
     exhaustMap((payload) =>
       this.authService.login(payload.credentials).pipe(
@@ -117,14 +95,10 @@ export class AuthEffects {
   );
 
   @Effect()
-  signInPageSignIn$ = this.actions$.pipe(
-    ofType<fromSignInPageActions.SignIn>(SignInPageActionTypes.SignIn),
-    map(({ payload }) => new SignIn(payload))
-  );
-
-  @Effect()
   signUpPageSignUp$ = this.actions$.pipe(
-    ofType<fromSignUpPageActions.SignUp>(SignUpPageActionTypes.SignUp),
+    ofType<fromSignUpPageActions.SignUp>(
+      fromSignUpPageActions.SignUpPageActionTypes.SignUp
+    ),
     map(({ payload }) => new SignUp(payload))
   );
 
@@ -235,7 +209,8 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   signOutConfirmationAlertShow$ = this.actions$.pipe(
     ofType<fromSignOutConfirmationAlertActions.Show>(
-      SignOutConfirmationAlertActionTypes.Show
+      fromSignOutConfirmationAlertActions.SignOutConfirmationAlertActionTypes
+        .Show
     ),
     tap(() => this.signOutConfirmationAlertService.show())
   );
@@ -243,25 +218,12 @@ export class AuthEffects {
   @Effect()
   signOutConfirmationAccepted$ = this.actions$.pipe(
     ofType<fromSignOutConfirmationAlertActions.Accepted>(
-      SignOutConfirmationAlertActionTypes.Accepted
+      fromSignOutConfirmationAlertActions.SignOutConfirmationAlertActionTypes
+        .Accepted
     ),
     map(() => new SignOut())
   );
   // ==
-  /*
-  @Effect({ dispatch: false })
-  logout$ = this.actions$
-    .ofType<SignOutConfirmationOk>(AuthActionTypes.SignOutConfirmationOk)
-    .pipe(
-      exhaustMap((auth) =>
-        this.authService.logout().pipe(
-          tap(() => this.router.navigate(['/sign-in'])),
-          map(() => new LogoutComplete()),
-          catchError(() => of(new LogoutComplete()))
-        )
-      )
-    );
-*/
 
   @Effect()
   init$: Observable<any> = defer(() => of(null)).pipe(
