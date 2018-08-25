@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { AuthFeatureState, selectAuthFeatureState } from '@app/auth/reducers';
-import { LoginPageState } from '@app/auth/reducers/login-page.reducer';
+import { SignInPageState } from '@app/auth/reducers/sign-in-page.reducer';
 
 const selectSignInPageState = createSelector(
   selectAuthFeatureState,
@@ -10,12 +10,12 @@ const selectSignInPageState = createSelector(
 
 const selectSignInPageError = createSelector(
   selectSignInPageState,
-  (state: LoginPageState) => state.error
+  (state: SignInPageState) => state.error
 );
 
 const selectSignInPagePending = createSelector(
   selectSignInPageState,
-  (state: LoginPageState) => state.pending
+  (state: SignInPageState) => state.pending
 );
 
 export const signInPageQuery = {

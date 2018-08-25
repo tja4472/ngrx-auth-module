@@ -7,12 +7,12 @@ import {
 import * as fromRoot from '@app/reducers';
 
 import * as fromAuth from '@app/auth/reducers/auth.reducer';
-import * as fromLoginPage from '@app/auth/reducers/login-page.reducer';
+import * as fromSignInPage from '@app/auth/reducers/sign-in-page.reducer';
 import * as fromSignUpPage from '@app/auth/reducers/sign-up-page.reducer';
 
 export interface AuthFeatureState {
   auth: fromAuth.AuthState;
-  loginPage: fromLoginPage.LoginPageState;
+  loginPage: fromSignInPage.SignInPageState;
   signUpPage: fromSignUpPage.SignUpPageState;
 }
 
@@ -22,7 +22,7 @@ export interface State extends fromRoot.State {
 
 export const reducers: ActionReducerMap<AuthFeatureState> = {
   auth: fromAuth.authReducer,
-  loginPage: fromLoginPage.loginPageReducer,
+  loginPage: fromSignInPage.signInPageReducer,
   signUpPage: fromSignUpPage.signUpPageReducer,
 };
 

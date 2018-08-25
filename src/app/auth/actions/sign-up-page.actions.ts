@@ -28,4 +28,4 @@ export class SignUpSuccess implements Action {
   constructor(readonly payload: { user: UserModel }) {}
 }
 
-export type SignUpPageActions = SignUp | SignUpFailure | SignUpSuccess;
+export type SignUpPageActionsUnion = SignUp | SignUpFailure | SignUpSuccess;

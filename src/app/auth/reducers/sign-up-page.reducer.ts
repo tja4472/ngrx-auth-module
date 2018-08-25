@@ -1,5 +1,5 @@
 import {
-  SignUpPageActions,
+  SignUpPageActionsUnion,
   SignUpPageActionTypes,
 } from '@app/auth/actions/sign-up-page.actions';
 
@@ -15,7 +15,7 @@ export const initialState: SignUpPageState = {
 
 export function signUpPageReducer(
   state = initialState,
-  action: SignUpPageActions
+  action: SignUpPageActionsUnion
 ): SignUpPageState {
   switch (action.type) {
     case SignUpPageActionTypes.SignUp: {

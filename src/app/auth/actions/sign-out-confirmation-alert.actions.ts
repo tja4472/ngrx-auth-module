@@ -29,4 +29,4 @@ export class Show implements Action {
   readonly type = SignOutConfirmationAlertActionTypes.Show;
 }
 
-export type SignOutConfirmationAlertActions = Show | Cancelled | Accepted;
+export type SignOutConfirmationAlertActionsUnion = Show | Cancelled | Accepted;

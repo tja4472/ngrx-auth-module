@@ -123,24 +123,6 @@ export class AuthEffects {
   );
 
   @Effect()
-  signInPageSignInFailure$ = this.actions$.pipe(
-    ofType<SignInFailure>(AuthApiActionTypes.SignInFailure),
-    map(
-      ({ payload }) =>
-        new fromSignInPageActions.SignInFailure({ error: payload })
-    )
-  );
-
-  @Effect()
-  signInPageSignInSuccess$ = this.actions$.pipe(
-    ofType<SignInSuccess>(AuthApiActionTypes.SignInSuccess),
-    map(
-      ({ payload }) =>
-        new fromSignInPageActions.SignInSuccess({ user: payload.user })
-    )
-  );
-
-  @Effect()
   signUpPageSignUp$ = this.actions$.pipe(
     ofType<fromSignUpPageActions.SignUp>(SignUpPageActionTypes.SignUp),
     map(({ payload }) => new SignUp(payload))
