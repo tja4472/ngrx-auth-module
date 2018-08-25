@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Authenticate } from '@app/auth/models/authentication.model';
+import { Credentials } from '@app/auth/models/credentials.model';
 
 @Component({
   selector: 'tja-sign-in-form',
@@ -26,7 +26,7 @@ export class SignInFormComponent implements OnInit {
   readonly SignUpClicked = new EventEmitter();
 
   @Output()
-  readonly submitted = new EventEmitter<Authenticate>();
+  readonly submitted = new EventEmitter<Credentials>();
 
   get password() {
     return this.loginForm.get('password');
@@ -50,7 +50,7 @@ export class SignInFormComponent implements OnInit {
 
   onSubmit() {
     //
-    const value: Authenticate = this.loginForm.value;
+    const value: Credentials = this.loginForm.value;
 
     if (this.loginForm.valid) {
       this.submitted.emit(value);

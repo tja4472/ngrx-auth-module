@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file
 import { Action } from '@ngrx/store';
 
-import { Authenticate } from '@app/auth/models/authentication.model';
+import { Credentials } from '@app/auth/models/credentials.model';
 import { UserModel } from '@app/auth/models/user.model';
 
 export enum AuthApiActionTypes {
@@ -44,7 +44,7 @@ export class ShowSignUpPage implements Action {
 export class SignIn implements Action {
   readonly type = AuthApiActionTypes.SignIn;
 
-  constructor(public payload: { credentials: Authenticate }) {}
+  constructor(public payload: { credentials: Credentials }) {}
 }
 
 export class SignInSuccess implements Action {
@@ -70,7 +70,7 @@ export class SignOutComplete implements Action {
 export class SignUp implements Action {
   readonly type = AuthApiActionTypes.SignUp;
 
-  constructor(public payload: { credentials: Authenticate }) {}
+  constructor(public payload: { credentials: Credentials }) {}
 }
 
 export class SignUpFailure implements Action {

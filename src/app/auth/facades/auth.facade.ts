@@ -6,7 +6,7 @@ import { ShowSignUpPage, SignUp } from '@app/auth/actions/auth-api.actions';
 import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
 import * as fromSignUpPageActions from '@app/auth/actions/sign-up-page.actions';
 
-import { Authenticate } from '@app/auth/models/authentication.model';
+import { Credentials } from '@app/auth/models/credentials.model';
 import { State } from '@app/auth/reducers';
 import { authQuery } from '@app/auth/selectors/auth.selectors';
 import { signInPageQuery } from '@app/auth/selectors/sign-in-page.selectors';
@@ -36,11 +36,11 @@ export class AuthFacade {
 
   constructor(private store: Store<State>) {}
 
-  public signInPageSignIn(credentials: Authenticate) {
+  public signInPageSignIn(credentials: Credentials) {
     this.store.dispatch(new fromSignInPageActions.SignIn({ credentials }));
   }
 
-  public signUpPageSignUp(credentials: Authenticate) {
+  public signUpPageSignUp(credentials: Credentials) {
     this.store.dispatch(new fromSignUpPageActions.SignUp({ credentials }));
   }
 

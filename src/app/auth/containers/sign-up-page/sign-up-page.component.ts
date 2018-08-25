@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthFacade } from '@app/auth/facades/auth.facade';
-import { Authenticate } from '@app/auth/models/authentication.model';
+import { Credentials } from '@app/auth/models/credentials.model';
 
 @Component({
   selector: 'tja-sign-up-page',
@@ -16,7 +16,7 @@ export class SignUpPageComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmitted(credentials: Authenticate) {
+  onSubmitted(credentials: Credentials) {
     this.authFacade.signUpPageSignUp(credentials);
   }
 }

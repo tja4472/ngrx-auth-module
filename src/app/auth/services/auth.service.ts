@@ -14,7 +14,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { Authenticate } from '@app/auth/models/authentication.model';
+import { Credentials } from '@app/auth/models/credentials.model';
 import { UserModel } from '@app/auth/models/user.model';
 
 import { UserInfoDataService } from '@app/auth/services/user-info.data.service';
@@ -70,7 +70,7 @@ export class AuthService {
     return this.signedInSignedOut$.pipe(take(1));
   }
 
-  public login(auth: Authenticate): Observable<UserModel> {
+  public login(auth: Credentials): Observable<UserModel> {
     //
     const result$ = from(
       this.afAuth.auth.signInWithEmailAndPassword(auth.username, auth.password)
@@ -97,7 +97,7 @@ export class AuthService {
     return result$;
   }
 
-  public signUp(auth: Authenticate) {
+  public signUp(auth: Credentials) {
     //
     const result$ = from(
       this.afAuth.auth.createUserWithEmailAndPassword(
