@@ -11,16 +11,14 @@ export enum AuthApiActionTypes {
   //
   ShowSignUpPage = '[Auth] Show Sign Up Page',
   //
-  SignIn = '[Auth API] Sign In',
-  SignInSuccess = '[Auth/API] Sign In - Success',
   SignInFailure = '[Auth/API] Sign In - Failure',
+  SignInSuccess = '[Auth/API] Sign In - Success',
   //
   SignOut = '[Auth API] Sign Out',
   SignOutComplete = '[Auth API] Sign Out - Complete',
   //
-  SignUp = '[Auth] Sign Up',
-  SignUpFailure = '[Auth] Sign Up - Failure',
-  SignUpSuccess = '[Auth] Sign Up - Success',
+  SignUpFailure = '[Auth/API] Sign Up - Failure',
+  SignUpSuccess = '[Auth/API] Sign Up - Success',
 }
 
 export class AutoSignIn implements Action {
@@ -39,12 +37,6 @@ export class AutoSignInNoUser implements Action {
 
 export class ShowSignUpPage implements Action {
   readonly type = AuthApiActionTypes.ShowSignUpPage;
-}
-
-export class SignIn implements Action {
-  readonly type = AuthApiActionTypes.SignIn;
-
-  constructor(public payload: { credentials: Credentials }) {}
 }
 
 export class SignInSuccess implements Action {
@@ -67,12 +59,6 @@ export class SignOutComplete implements Action {
   readonly type = AuthApiActionTypes.SignOutComplete;
 }
 
-export class SignUp implements Action {
-  readonly type = AuthApiActionTypes.SignUp;
-
-  constructor(public payload: { credentials: Credentials }) {}
-}
-
 export class SignUpFailure implements Action {
   readonly type = AuthApiActionTypes.SignUpFailure;
 
@@ -88,11 +74,9 @@ export class SignUpSuccess implements Action {
 export type AuthApiActionsUnion =
   | AutoSignInHaveUser
   | AutoSignInNoUser
-  | SignInSuccess
   | SignInFailure
-  | SignIn
+  | SignInSuccess
   | SignOut
   | SignOutComplete
-  | SignUp
   | SignUpFailure
   | SignUpSuccess;

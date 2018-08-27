@@ -15,7 +15,6 @@ import {
   SignInSuccess,
   SignOut,
   SignOutComplete,
-  SignUp,
   SignUpFailure,
   SignUpSuccess,
 } from '@app/auth/actions/auth-api.actions';
@@ -62,19 +61,21 @@ export class AuthEffects {
     exhaustMap((payload) =>
       this.authService.login(payload.credentials).pipe(
         map((user) => new SignInSuccess({ user })),
-        catchError((error) => of(new SignInFailure(error)))
+        catchError((error) => of(new SignInFailure({ error })))
       )
     )
   );
 
   @Effect()
-  authSignUp$ = this.actions$.pipe(
-    ofType<SignUp>(AuthApiActionTypes.SignUp),
+  signUp$ = this.actions$.pipe(
+    ofType<fromSignUpPageActions.SignUp>(
+      fromSignUpPageActions.SignUpPageActionTypes.SignUp
+    ),
     map((action) => action.payload),
     exhaustMap((payload) =>
       this.authService.signUp(payload.credentials).pipe(
         map((user) => new SignUpSuccess({ user })),
-        catchError((error) => of(new SignUpFailure(error)))
+        catchError((error) => of(new SignUpFailure({ error })))
       )
     )
   );
@@ -92,32 +93,6 @@ export class AuthEffects {
         this.router.navigate([this.authService.redirectUrl]);
       }
     })
-  );
-
-  @Effect()
-  signUpPageSignUp$ = this.actions$.pipe(
-    ofType<fromSignUpPageActions.SignUp>(
-      fromSignUpPageActions.SignUpPageActionTypes.SignUp
-    ),
-    map(({ payload }) => new SignUp(payload))
-  );
-
-  @Effect()
-  signUpPageSignUpFailure$ = this.actions$.pipe(
-    ofType<SignUpFailure>(AuthApiActionTypes.SignUpFailure),
-    map(
-      ({ payload }) =>
-        new fromSignUpPageActions.SignUpFailure({ error: payload })
-    )
-  );
-
-  @Effect()
-  signUpPageSignUpSuccess$ = this.actions$.pipe(
-    ofType<SignUpSuccess>(AuthApiActionTypes.SignUpSuccess),
-    map(
-      ({ payload }) =>
-        new fromSignUpPageActions.SignUpSuccess({ user: payload.user })
-    )
   );
 
   /*

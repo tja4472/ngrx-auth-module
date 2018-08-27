@@ -1,4 +1,8 @@
 import {
+  AuthApiActionsUnion,
+  AuthApiActionTypes,
+} from '@app/auth/actions/auth-api.actions';
+import {
   SignUpPageActionsUnion,
   SignUpPageActionTypes,
 } from '@app/auth/actions/sign-up-page.actions';
@@ -15,19 +19,31 @@ export const initialState: SignUpPageState = {
 
 export function signUpPageReducer(
   state = initialState,
-  action: SignUpPageActionsUnion
+  action: AuthApiActionsUnion | SignUpPageActionsUnion
 ): SignUpPageState {
   switch (action.type) {
     case SignUpPageActionTypes.SignUp: {
-      return { ...state, pending: true };
+      return {
+        ...state,
+        error: null,
+        pending: true,
+      };
     }
 
-    case SignUpPageActionTypes.SignUpSuccess: {
-      return initialState;
+    case AuthApiActionTypes.SignUpSuccess: {
+      return {
+        ...state,
+        error: null,
+        pending: false,
+      };
     }
 
-    case SignUpPageActionTypes.SignUpFailure: {
-      return { ...state, error: action.payload.error, pending: false };
+    case AuthApiActionTypes.SignUpFailure: {
+      return {
+        ...state,
+        error: action.payload.error,
+        pending: false,
+      };
     }
 
     default: {
