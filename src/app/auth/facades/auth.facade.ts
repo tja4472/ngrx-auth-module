@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { ShowSignUpPage, SignUp } from '@app/auth/actions/auth-api.actions';
+import { ShowSignUpPage } from '@app/auth/actions/auth-api.actions';
 import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
 import * as fromSignUpPageActions from '@app/auth/actions/sign-up-page.actions';
 
