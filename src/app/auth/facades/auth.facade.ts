@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { ShowSignUpPage } from '@app/auth/actions/auth-api.actions';
-import * as fromSignInPageActions from '@app/auth/actions/sign-in-page.actions';
-import * as fromSignUpPageActions from '@app/auth/actions/sign-up-page.actions';
+import {
+  AuthApiActions,
+  SignInPageActions,
+  SignUpPageActions,
+} from '@app/auth/actions';
 
 import { Credentials } from '@app/auth/models/credentials.model';
 import { State } from '@app/auth/reducers';
@@ -37,14 +39,14 @@ export class AuthFacade {
   constructor(private store: Store<State>) {}
 
   public signInPageSignIn(credentials: Credentials) {
-    this.store.dispatch(new fromSignInPageActions.SignIn({ credentials }));
+    this.store.dispatch(new SignInPageActions.SignIn({ credentials }));
   }
 
   public signUpPageSignUp(credentials: Credentials) {
-    this.store.dispatch(new fromSignUpPageActions.SignUp({ credentials }));
+    this.store.dispatch(new SignUpPageActions.SignUp({ credentials }));
   }
 
   public showSignUpPage() {
-    this.store.dispatch(new ShowSignUpPage());
+    this.store.dispatch(new AuthApiActions.ShowSignUpPage());
   }
 }

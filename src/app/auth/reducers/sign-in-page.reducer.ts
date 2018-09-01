@@ -1,11 +1,4 @@
-import {
-  AuthApiActionsUnion,
-  AuthApiActionTypes,
-} from '@app/auth/actions/auth-api.actions';
-import {
-  SignInPageActionsUnion,
-  SignInPageActionTypes,
-} from '@app/auth/actions/sign-in-page.actions';
+import { AuthApiActions, SignInPageActions } from '@app/auth/actions';
 
 export interface SignInPageState {
   pending: boolean;
@@ -19,10 +12,12 @@ export const initialState: SignInPageState = {
 
 export function signInPageReducer(
   state = initialState,
-  action: AuthApiActionsUnion | SignInPageActionsUnion
+  action:
+    | AuthApiActions.AuthApiActionsUnion
+    | SignInPageActions.SignInPageActionsUnion
 ): SignInPageState {
   switch (action.type) {
-    case SignInPageActionTypes.SignIn: {
+    case SignInPageActions.SignInPageActionTypes.SignIn: {
       return {
         ...state,
         error: null,
@@ -30,7 +25,7 @@ export function signInPageReducer(
       };
     }
 
-    case AuthApiActionTypes.SignInSuccess: {
+    case AuthApiActions.AuthApiActionTypes.SignInSuccess: {
       return {
         ...state,
         error: null,
@@ -38,7 +33,7 @@ export function signInPageReducer(
       };
     }
 
-    case AuthApiActionTypes.SignInFailure: {
+    case AuthApiActions.AuthApiActionTypes.SignInFailure: {
       return {
         ...state,
         error: action.payload.error,

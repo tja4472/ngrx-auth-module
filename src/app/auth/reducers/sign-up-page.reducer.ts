@@ -1,11 +1,4 @@
-import {
-  AuthApiActionsUnion,
-  AuthApiActionTypes,
-} from '@app/auth/actions/auth-api.actions';
-import {
-  SignUpPageActionsUnion,
-  SignUpPageActionTypes,
-} from '@app/auth/actions/sign-up-page.actions';
+import { AuthApiActions, SignUpPageActions } from '@app/auth/actions';
 
 export interface SignUpPageState {
   readonly pending: boolean;
@@ -19,10 +12,12 @@ export const initialState: SignUpPageState = {
 
 export function signUpPageReducer(
   state = initialState,
-  action: AuthApiActionsUnion | SignUpPageActionsUnion
+  action:
+    | AuthApiActions.AuthApiActionsUnion
+    | SignUpPageActions.SignUpPageActionsUnion
 ): SignUpPageState {
   switch (action.type) {
-    case SignUpPageActionTypes.SignUp: {
+    case SignUpPageActions.SignUpPageActionTypes.SignUp: {
       return {
         ...state,
         error: null,
@@ -30,7 +25,7 @@ export function signUpPageReducer(
       };
     }
 
-    case AuthApiActionTypes.SignUpSuccess: {
+    case AuthApiActions.AuthApiActionTypes.SignUpSuccess: {
       return {
         ...state,
         error: null,
@@ -38,7 +33,7 @@ export function signUpPageReducer(
       };
     }
 
-    case AuthApiActionTypes.SignUpFailure: {
+    case AuthApiActions.AuthApiActionTypes.SignUpFailure: {
       return {
         ...state,
         error: action.payload.error,

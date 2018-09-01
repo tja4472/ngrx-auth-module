@@ -7,7 +7,7 @@ import { AlertOptions } from '@ionic/core';
 import { SignOutConfirmationAlertFacade } from '@app/auth/facades/sign-out-confirmation-alert.facade';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SignOutConfirmationAlertService {
   constructor(

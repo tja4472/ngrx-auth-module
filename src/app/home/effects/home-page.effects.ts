@@ -5,7 +5,7 @@ import * as fromHomePageActions from '@app/home/actions/home-page.actions';
 
 import { map } from 'rxjs/operators';
 
-import { Show } from '@app/auth/actions/sign-out-confirmation-alert.actions';
+import { SignOutConfirmationAlertActions } from '@app/auth/actions';
 
 @Injectable()
 export class HomePageEffects {
@@ -15,7 +15,7 @@ export class HomePageEffects {
     ofType<fromHomePageActions.SignOut>(
       fromHomePageActions.HomePageActionTypes.SignOut
     ),
-    map(() => new Show())
+    map(() => new SignOutConfirmationAlertActions.Show())
   );
 
   constructor(private actions$: Actions) {}
