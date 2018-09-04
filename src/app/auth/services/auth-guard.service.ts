@@ -27,7 +27,7 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private authService: AuthService,
     private readonly auth$: AngularFireAuth,
-    private store: Store<fromAuth.State>,
+    private store: Store<{}>,
     private router: Router
   ) {}
 

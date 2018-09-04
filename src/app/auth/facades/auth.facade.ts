@@ -36,7 +36,7 @@ export class AuthFacade {
     select(signUpPageQuery.selectSignUpPagePending)
   );
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<{}>) {}
 
   public signInPageSignIn(credentials: Credentials) {
     this.store.dispatch(new SignInPageActions.SignIn({ credentials }));

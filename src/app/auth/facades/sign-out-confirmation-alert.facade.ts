@@ -10,7 +10,7 @@ import { State } from '@app/auth/reducers';
   providedIn: 'root',
 })
 export class SignOutConfirmationAlertFacade {
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<{}>) {}
 
   public Accepted() {
     this.store.dispatch(new SignOutConfirmationAlertActions.Accepted());
