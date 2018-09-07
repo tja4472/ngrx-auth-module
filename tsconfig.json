@@ -7,6 +7,10 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "types": [
+      "jest", 
+      "node"
+    ],
     "baseUrl": "src",
     "paths": {
       "@app/*": ["app/*"]

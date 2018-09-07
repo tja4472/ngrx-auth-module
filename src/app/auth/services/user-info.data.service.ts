@@ -62,10 +62,12 @@ export class UserInfoDataService {
     public readonly environmentService: EnvironmentService
   ) {
     console.log('UserInfoDataService:constructor');
+    /*
     console.log(
       'environmentService.settings.appCode>',
       environmentService.settings.appCode
     );
+    */
     console.log('environmentService.appCode>', environmentService.appCode);
     // console.log('USERS_COLLECTION>', USERS_COLLECTION);
   }

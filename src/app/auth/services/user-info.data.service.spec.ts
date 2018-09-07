@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { inject, TestBed } from '@angular/core/testing';
 
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -41,13 +42,50 @@ describe('ConvertService', () => {
   });
 });
 
-describe('UserInfoDataService - AngularFirestoreStub', () => {
+describe('Service: UserInfoDataService - no TestBed', () => {
+  let service: UserInfoDataService;
+  //
+  const afs = {};
+  const convertService = {};
+  const environmentService = new EnvironmentService();
+
+  beforeEach(() => {
+    service = new UserInfoDataService(
+      afs as any,
+      convertService as any,
+      environmentService
+    );
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('usersCollectionPath should be apps/APP-CODE/users', () => {
+    const spy = jest
+      .spyOn(environmentService, 'appCode', 'get')
+      .mockReturnValue('APP-CODE');
+
+    expect(service.usersCollectionPath).toEqual('apps/APP-CODE/users');
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Service: UserInfoDataService - TestBed', () => {
   const AngularFirestoreStub = {
     // I just mocked the function you need, if there are more, you can add them here.
     // collection: (someString) => {
     // return mocked collection here
     // },
   };
+
+  @Injectable()
+  class FakeEnvironmentService extends EnvironmentService {
+      get appCode() {
+          return 'aa';
+      }
+  }
 
   let environmentService: EnvironmentService;
   let userInfoDataService: UserInfoDataService;
@@ -56,8 +94,8 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
     TestBed.configureTestingModule({
       // Provide both the service-to-test and its dependencies.
       providers: [
-        // UserInfoDataServiceA,
-        EnvironmentService,
+        UserInfoDataService,
+        { provide: EnvironmentService, useClass: FakeEnvironmentService },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
     });
@@ -74,9 +112,10 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
   ));
 
   it('usersCollectionPath should be apps/APP-CODE/users', () => {
-    const spy = spyOnProperty(environmentService, 'appCode').and.returnValue(
-      'APP-CODE'
-    );
+    const spy = jest
+      .spyOn(environmentService, 'appCode', 'get')
+      .mockReturnValue('APP-CODE');
+
     expect(userInfoDataService.usersCollectionPath).toEqual(
       'apps/APP-CODE/users'
     );
@@ -85,6 +124,98 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
   });
 });
 
+describe('UserInfoDataService - AngularFirestoreStub', () => {
+  const AngularFirestoreStub = {
+    // I just mocked the function you need, if there are more, you can add them here.
+    // collection: (someString) => {
+    // return mocked collection here
+    // },
+  };
+
+  const spyAA = jest.fn();
+
+  let environmentService: EnvironmentService;
+  let userInfoDataService: UserInfoDataService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      // Provide both the service-to-test and its dependencies.
+      providers: [
+        // UserInfoDataServiceA,
+        EnvironmentService,
+        // { provide: AngularFirestore, useValue: AngularFirestoreStub },
+        { provide: AngularFirestore, useValue: spyAA },
+      ],
+    });
+
+    userInfoDataService = TestBed.get(UserInfoDataService);
+    environmentService = TestBed.get(EnvironmentService);
+  });
+
+  it('should be created', inject(
+    [UserInfoDataService],
+    (service: UserInfoDataService) => {
+      expect(service).toBeTruthy();
+    }
+  ));
+
+  it('usersCollectionPath should be apps/APP-CODE/users', () => {
+    // const spy = spyOnProperty(environmentService, 'appCode').and.returnValue(
+    //  'APP-CODE'
+    // );
+    const spy = jest
+      .spyOn(environmentService, 'appCode', 'get')
+      .mockReturnValue('APP-CODE');
+
+    expect(userInfoDataService.usersCollectionPath).toEqual(
+      'apps/APP-CODE/users'
+    );
+    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+});
+
+/*
+describe('UserInfoDataService - Testing without beforeEach()', () => {
+  function setup() {
+    const stubValue = 'stub value';
+    // jasmine.createSpyObj
+    // const appCode = jest.fn().mockReturnValue(stubValue);
+    // const makeEnvironmentService = EnvironmentService.
+    // const s = jest.fn({key: jest.fn()});
+
+    const environmentServiceSpy = { 
+      appCode: jest.fn(),
+      settings: {appCode: jest.fn()}
+    };
+
+    environmentServiceSpy.appCode.mockReturnValue(stubValue);
+    environmentServiceSpy.settings.appCode.mockReturnValue('SSSSSSSs');
+
+    const convertServiceSpy = jest.fn<ConvertService>();
+    const angularFirestoreSpy = jest.fn();
+    const userInfoDataService = new UserInfoDataService(
+      angularFirestoreSpy as any,
+      convertServiceSpy as any,
+      environmentServiceSpy as any
+    );
+    // const stubValue = 'stub value';
+
+
+
+    return { userInfoDataService, stubValue, environmentServiceSpy};
+  }
+
+  it ('aaaaaaaaaaaaaaaa', () => {
+    const { userInfoDataService, stubValue, environmentServiceSpy} = setup();
+    expect(userInfoDataService.usersCollectionPath).toEqual(
+      'apps/APP-CODE/users'
+    );
+  });
+});
+*/
+
+/*
 describe('UserInfoDataService - angularFirestoreSpy', () => {
   let environmentService: EnvironmentService;
   let userInfoDataService: UserInfoDataService;
@@ -125,3 +256,4 @@ describe('UserInfoDataService - angularFirestoreSpy', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
+*/
