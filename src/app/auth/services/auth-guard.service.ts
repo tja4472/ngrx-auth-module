@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 
 // tslint:disable-next-line:no-submodule-imports
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { AuthService } from '@app/auth/services/auth.service';
 

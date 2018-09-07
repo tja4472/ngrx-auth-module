@@ -16,9 +16,9 @@ import { AppComponent } from '@app/app.component';
 import { ComponentsModule } from '@app/components/components.module';
 import { environment } from 'environments/environment';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { metaReducers, reducers } from '@app/reducers';
 

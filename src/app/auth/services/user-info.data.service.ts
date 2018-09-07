@@ -6,7 +6,7 @@ import { from, Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 // tslint:disable-next-line:no-submodule-imports
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { newUserInfo, UserInfo } from '@app/auth/models/user-info.model';
 import { EnvironmentService } from '@app/core/environment.service';
