@@ -11,6 +11,6 @@
 
 <ion-content padding>
   <tja-sign-up-form [error]="error$ | async"
-                    [disabled]="pending$ | async"
+                    [pending]="pending$ | async"
                     (submitted)="onSubmitted($event)"></tja-sign-up-form>
 </ion-content>

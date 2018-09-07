@@ -14,8 +14,8 @@ export class SignUpFormComponent implements OnInit {
   error: string | null;
 
   @Input()
-  set disabled(isDisabled: boolean) {
-    if (isDisabled) {
+  set pending(isPending: boolean) {
+    if (isPending) {
       this.loginForm.disable();
     } else {
       this.loginForm.enable();
