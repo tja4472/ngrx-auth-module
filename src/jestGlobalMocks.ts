@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-string-literal
-global['CSS'] = null;
+(global as any)['CSS'] = null;
 
 const mock = () => {
   let storage = {};
@@ -36,3 +36,11 @@ Object.defineProperty(document.body.style, 'transform', {
     };
   },
 });
+
+Object.defineProperty(window, 'matchMedia', { value: () => (
+  {
+    matches : false,
+    addListener: () => { },
+    removeListener: () => { },
+  }
+ ) });

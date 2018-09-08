@@ -4,6 +4,7 @@
     "outDir": "../out-tsc/spec",
     "baseUrl": "./",
     "module": "commonjs",
+    "allowJs": true,
     "types": [
       "jest",
       "node"
@@ -11,7 +12,7 @@
   },
   "files": [
     "test.ts"
-  ],
+  ],  
   "include": [
     "polyfills.ts",
     "**/*.spec.ts",
