@@ -39,7 +39,7 @@ export class AuthService {
     );
 
     this.signedIn$ = firebaseAuth$.pipe(
-      filter((firebaseUser) => !!firebaseUser),
+      filter((firebaseUser) => firebaseUser !== null),
       exhaustMap((firebaseUser) =>
         from(this.userDataService.getUserData(firebaseUser.uid)).pipe(
           map((userData) => ({ firebaseUser, userData })),
@@ -58,7 +58,7 @@ export class AuthService {
     );
 
     this.signedOut$ = firebaseAuth$.pipe(
-      filter((firebaseUser) => !!!firebaseUser),
+      filter((firebaseUser) => firebaseUser === null),
       map(() => null)
     );
 
