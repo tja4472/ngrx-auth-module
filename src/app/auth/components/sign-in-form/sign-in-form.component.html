@@ -34,9 +34,9 @@
       </div>
     </ion-item>
 
-    <ion-text *ngIf="error"
+    <ion-text *ngIf="errorMessage"
               color="danger">
-      {{ error }}
+      {{ errorMessage }}
       <!--
         <p [hidden]="username.valid || submitted == false" padding-left>
           Username is required

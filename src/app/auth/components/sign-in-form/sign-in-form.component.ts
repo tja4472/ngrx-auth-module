@@ -11,7 +11,7 @@ import { Credentials } from '@app/auth/models/credentials.model';
 })
 export class SignInFormComponent implements OnInit {
   @Input()
-  error: string | null;
+  errorMessage: string | null;
 
   @Input()
   set pending(isPending: boolean) {

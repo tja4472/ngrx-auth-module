@@ -3,24 +3,24 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { SignInFormComponent } from '@app/auth/components/sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from '@app/auth/components/sign-up-form/sign-up-form.component';
 
 // import { combineReducers, Store, StoreModule } from '@ngrx/store';
 
-describe('Sign In Page', () => {
-  let fixture: ComponentFixture<SignInFormComponent>;
-  let component: SignInFormComponent;
+describe('Sign Up Page', () => {
+  let fixture: ComponentFixture<SignUpFormComponent>;
+  let component: SignUpFormComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [IonicModule, ReactiveFormsModule],
-      declarations: [SignInFormComponent],
+      declarations: [SignUpFormComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignInFormComponent);
+    fixture = TestBed.createComponent(SignUpFormComponent);
     component = fixture.componentInstance;
     // fixture.detectChanges();
   });

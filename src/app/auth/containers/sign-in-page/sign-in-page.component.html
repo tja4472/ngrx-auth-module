@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <tja-sign-in-form [error]="error$ | async"
+  <tja-sign-in-form [errorMessage]="error$ | async"
                     [pending]="pending$ | async"
                     (SignUpClicked)="onSignUp()"
                     (submitted)="onSubmitted($event)"></tja-sign-in-form>

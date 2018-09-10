@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sign In Page ngrx-platform - should compile 1`] = `
-<tja-sign-in-form
-  SignUpClicked={[Function EventEmitter]}
+exports[`Sign Up Page ngrx-platform - should compile 1`] = `
+<tja-sign-up-form
   loginForm={[Function FormGroup]}
   submitted={[Function EventEmitter]}
 >
@@ -11,11 +10,6 @@ exports[`Sign In Page ngrx-platform - should compile 1`] = `
     ng-reflect-form="[object Object]"
     novalidate=""
   >
-    <ion-text>
-       Email Address: a.a@a.com 
-      <br />
-       Password: password 
-    </ion-text>
     <ion-list
       lines="none"
       ng-reflect-lines="none"
@@ -30,10 +24,8 @@ exports[`Sign In Page ngrx-platform - should compile 1`] = `
           Email address
         </ion-label>
         <ion-input
-          autofocus=""
           class="ng-untouched ng-pristine ng-invalid"
           formcontrolname="username"
-          ng-reflect-autofocus=""
           ng-reflect-name="username"
           ng-reflect-placeholder="Username"
           ng-reflect-required=""
@@ -42,7 +34,6 @@ exports[`Sign In Page ngrx-platform - should compile 1`] = `
           required=""
           type="email"
         />
-        
       </ion-item>
       <ion-item>
         <ion-label
@@ -64,7 +55,6 @@ exports[`Sign In Page ngrx-platform - should compile 1`] = `
           required=""
           type="password"
         />
-        
       </ion-item>
       
     </ion-list>
@@ -78,28 +68,18 @@ exports[`Sign In Page ngrx-platform - should compile 1`] = `
             ng-reflect-type="submit"
             type="submit"
           >
-            Sign In
+            Sign Up
           </ion-button>
         </ion-col>
-        <ion-col>
-          <ion-button
-            color="light"
-            expand="block"
-            ng-reflect-color="light"
-            ng-reflect-expand="block"
-          >
-            Sign up
-          </ion-button>
-        </ion-col>
+        <ion-col />
       </ion-row>
     </ion-grid>
   </form>
-</tja-sign-in-form>
+</tja-sign-up-form>
 `;
 
-exports[`Sign In Page ngrx-platform - should disable the form if pending 1`] = `
-<tja-sign-in-form
-  SignUpClicked={[Function EventEmitter]}
+exports[`Sign Up Page ngrx-platform - should disable the form if pending 1`] = `
+<tja-sign-up-form
   loginForm={[Function FormGroup]}
   submitted={[Function EventEmitter]}
 >
@@ -108,11 +88,6 @@ exports[`Sign In Page ngrx-platform - should disable the form if pending 1`] = `
     ng-reflect-form="[object Object]"
     novalidate=""
   >
-    <ion-text>
-       Email Address: a.a@a.com 
-      <br />
-       Password: password 
-    </ion-text>
     <ion-list
       lines="none"
       ng-reflect-lines="none"
@@ -127,10 +102,8 @@ exports[`Sign In Page ngrx-platform - should disable the form if pending 1`] = `
           Email address
         </ion-label>
         <ion-input
-          autofocus=""
           class="ng-untouched ng-pristine"
           formcontrolname="username"
-          ng-reflect-autofocus=""
           ng-reflect-name="username"
           ng-reflect-placeholder="Username"
           ng-reflect-required=""
@@ -139,7 +112,6 @@ exports[`Sign In Page ngrx-platform - should disable the form if pending 1`] = `
           required=""
           type="email"
         />
-        
       </ion-item>
       <ion-item>
         <ion-label
@@ -161,7 +133,6 @@ exports[`Sign In Page ngrx-platform - should disable the form if pending 1`] = `
           required=""
           type="password"
         />
-        
       </ion-item>
       
     </ion-list>
@@ -175,28 +146,18 @@ exports[`Sign In Page ngrx-platform - should disable the form if pending 1`] = `
             ng-reflect-type="submit"
             type="submit"
           >
-            Sign In
+            Sign Up
           </ion-button>
         </ion-col>
-        <ion-col>
-          <ion-button
-            color="light"
-            expand="block"
-            ng-reflect-color="light"
-            ng-reflect-expand="block"
-          >
-            Sign up
-          </ion-button>
-        </ion-col>
+        <ion-col />
       </ion-row>
     </ion-grid>
   </form>
-</tja-sign-in-form>
+</tja-sign-up-form>
 `;
 
-exports[`Sign In Page ngrx-platform - should display an error message if provided 1`] = `
-<tja-sign-in-form
-  SignUpClicked={[Function EventEmitter]}
+exports[`Sign Up Page ngrx-platform - should display an error message if provided 1`] = `
+<tja-sign-up-form
   errorMessage={[Function String]}
   loginForm={[Function FormGroup]}
   submitted={[Function EventEmitter]}
@@ -206,11 +167,6 @@ exports[`Sign In Page ngrx-platform - should display an error message if provide
     ng-reflect-form="[object Object]"
     novalidate=""
   >
-    <ion-text>
-       Email Address: a.a@a.com 
-      <br />
-       Password: password 
-    </ion-text>
     <ion-list
       lines="none"
       ng-reflect-lines="none"
@@ -225,10 +181,8 @@ exports[`Sign In Page ngrx-platform - should display an error message if provide
           Email address
         </ion-label>
         <ion-input
-          autofocus=""
           class="ng-untouched ng-pristine ng-invalid"
           formcontrolname="username"
-          ng-reflect-autofocus=""
           ng-reflect-name="username"
           ng-reflect-placeholder="Username"
           ng-reflect-required=""
@@ -237,7 +191,6 @@ exports[`Sign In Page ngrx-platform - should display an error message if provide
           required=""
           type="email"
         />
-        
       </ion-item>
       <ion-item>
         <ion-label
@@ -259,7 +212,6 @@ exports[`Sign In Page ngrx-platform - should display an error message if provide
           required=""
           type="password"
         />
-        
       </ion-item>
       
       <ion-text
@@ -279,21 +231,12 @@ exports[`Sign In Page ngrx-platform - should display an error message if provide
             ng-reflect-type="submit"
             type="submit"
           >
-            Sign In
+            Sign Up
           </ion-button>
         </ion-col>
-        <ion-col>
-          <ion-button
-            color="light"
-            expand="block"
-            ng-reflect-color="light"
-            ng-reflect-expand="block"
-          >
-            Sign up
-          </ion-button>
-        </ion-col>
+        <ion-col />
       </ion-row>
     </ion-grid>
   </form>
-</tja-sign-in-form>
+</tja-sign-up-form>
 `;
