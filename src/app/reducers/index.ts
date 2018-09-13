@@ -19,13 +19,17 @@ export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
 };
 
+// console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-  // tslint:disable-next-line:only-arrow-functions
-  return function(state: State, action: any): State {
-    // console.log('state', state);
+  return (state: State, action: any): any => {
+    const result = reducer(state, action);
+    console.groupCollapsed(action.type);
+    console.log('prev state', state);
     console.log('action', action);
+    console.log('next state', result);
+    console.groupEnd();
 
-    return reducer(state, action);
+    return result;
   };
 }
 
