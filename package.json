@@ -47,7 +47,7 @@
     "@angular/language-service": "6.1.7",
     "@angular-devkit/build-angular": "0.8.2",
     "@ngrx/schematics": "6.1.0",
-    "@types/node": "10.9.4",
+    "@types/node": "10.10.1",
     "codelyzer": "4.4.4",
     "jasmine-core": "3.2.1",
     "jasmine-spec-reporter": "4.2.1",
@@ -68,10 +68,10 @@
   },
   "jest": {
     "preset": "jest-preset-angular",
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",   
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",
     "moduleNameMapper": {
       "^@app/(.*)": "<rootDir>/src/app/$1",
-      "^@ionic/core/loader":"<rootDir>/node_modules/@ionic/core/loader/loader.ts"
+      "^@ionic/core/loader": "<rootDir>/node_modules/@ionic/core/loader/loader.ts"
     },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/(?!@ngrx|@ionic-native|@ionic)"
