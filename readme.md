@@ -15,11 +15,11 @@ FAIL  src/app/auth/components/sign-in-form/sign-in-form.component.spec.ts
       at Object.<anonymous> (node_modules/@ionic/angular/dist/app-initialize.js:1:1)
 ```
 
-- Create blank file, `<rootDir>/node_modules/@ionic/core/loader/loader.ts`
+- ~~Create blank file, `<rootDir>/node_modules/@ionic/core/loader/loader.ts`~~
 - Add to package.json, moduleNameMapper
 
   ```json
-  "^@ionic/core/loader":"<rootDir>/node_modules/@ionic/core/loader/loader.ts"
+  "^@ionic/core/loader":"<rootDir>/node_modules/@ionic/core/dist/esm/es5/ionic.define.js"
   ```
 
 ## Add Auth Module to Ionic App

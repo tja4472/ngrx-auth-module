@@ -71,7 +71,7 @@
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",
     "moduleNameMapper": {
       "^@app/(.*)": "<rootDir>/src/app/$1",
-      "^@ionic/core/loader": "<rootDir>/node_modules/@ionic/core/loader/loader.ts"
+      "^@ionic/core/loader": "<rootDir>/node_modules/@ionic/core/dist/esm/es5/ionic.define.js"
     },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/(?!@ngrx|@ionic-native|@ionic)"
