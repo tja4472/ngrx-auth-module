@@ -21,7 +21,7 @@
   "dependencies": {
     "@angular/common": "6.1.8",
     "@angular/core": "6.1.8",
-    "@angular/fire": "5.0.0",
+    "@angular/fire": "5.0.2",
     "@angular/forms": "6.1.8",
     "@angular/http": "6.1.8",
     "@angular/platform-browser": "6.1.8",
@@ -47,7 +47,7 @@
     "@angular/language-service": "6.1.8",
     "@angular-devkit/build-angular": "0.8.3",
     "@ngrx/schematics": "6.1.0",
-    "@types/node": "10.10.1",
+    "@types/node": "10.10.3",
     "codelyzer": "4.4.4",
     "jasmine-core": "3.2.1",
     "jasmine-spec-reporter": "4.2.1",
