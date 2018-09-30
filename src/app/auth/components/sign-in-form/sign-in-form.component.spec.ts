@@ -43,6 +43,7 @@ describe('Sign In Page', () => {
     expect(component).toBeTruthy();
   });
 
+/*  
   it('ngrx-platform - should compile', () => {
     fixture.detectChanges();
     expect(fixture).toMatchSnapshot();
@@ -63,6 +64,7 @@ describe('Sign In Page', () => {
 
     expect(fixture).toMatchSnapshot();
   });
+*/
 
   it('ngrx-platform - should emit an event if the form is valid when submitted', () => {
     const credentials = {

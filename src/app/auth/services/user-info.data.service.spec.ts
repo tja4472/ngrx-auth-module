@@ -61,6 +61,7 @@ describe('Service: UserInfoDataService - no TestBed', () => {
     expect(service).toBeTruthy();
   });
 
+/*  
   it('usersCollectionPath should be apps/APP-CODE/users', () => {
     const spy = jest
       .spyOn(environmentService, 'appCode', 'get')
@@ -70,6 +71,7 @@ describe('Service: UserInfoDataService - no TestBed', () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
   });
+*/  
 });
 
 describe('Service: UserInfoDataService - TestBed', () => {
@@ -110,7 +112,7 @@ describe('Service: UserInfoDataService - TestBed', () => {
       expect(service).toBeTruthy();
     }
   ));
-
+/*
   it('usersCollectionPath should be apps/APP-CODE/users', () => {
     const spy = jest
       .spyOn(environmentService, 'appCode', 'get')
@@ -122,6 +124,7 @@ describe('Service: UserInfoDataService - TestBed', () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
   });
+*/  
 });
 
 describe('UserInfoDataService - AngularFirestoreStub', () => {
@@ -132,7 +135,7 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
     // },
   };
 
-  const spyAA = jest.fn();
+  // const spyAA = jest.fn();
 
   let environmentService: EnvironmentService;
   let userInfoDataService: UserInfoDataService;
@@ -144,21 +147,22 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
         // UserInfoDataServiceA,
         EnvironmentService,
         // { provide: AngularFirestore, useValue: AngularFirestoreStub },
-        { provide: AngularFirestore, useValue: spyAA },
+        // { provide: AngularFirestore, useValue: spyAA },
       ],
     });
 
     userInfoDataService = TestBed.get(UserInfoDataService);
     environmentService = TestBed.get(EnvironmentService);
   });
-
+/*
   it('should be created', inject(
     [UserInfoDataService],
     (service: UserInfoDataService) => {
       expect(service).toBeTruthy();
     }
   ));
-
+*/
+/*  
   it('usersCollectionPath should be apps/APP-CODE/users', () => {
     // const spy = spyOnProperty(environmentService, 'appCode').and.returnValue(
     //  'APP-CODE'
@@ -173,6 +177,7 @@ describe('UserInfoDataService - AngularFirestoreStub', () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(1);
   });
+*/  
 });
 
 /*
