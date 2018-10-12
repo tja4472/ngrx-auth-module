@@ -4,30 +4,25 @@ import { inject, TestBed } from '@angular/core/testing';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import {
-  ConvertService,
   FirestoreDoc,
+  fromFirestoreDoc,
+  toFirestoreDoc,
   UserInfoDataService,
 } from '@app/auth/services/user-info.data.service';
 
 import { newUserInfo, UserInfo } from '@app/auth/models/user-info.model';
 import { EnvironmentService } from '@app/core/environment.service';
 
-describe('ConvertService', () => {
-  let convertService: ConvertService;
-
-  beforeEach(() => {
-    convertService = new ConvertService();
-  });
-
+describe('Conversion functions', () => {
   it('#fromFirestoreDoc should return null', () => {
-    expect(convertService.fromFirestoreDoc(null)).toEqual(null);
+    expect(fromFirestoreDoc(null)).toEqual(null);
   });
 
   it('#fromFirestoreDoc should return UserInfo', () => {
     const expectedUserInfo: UserInfo = { todoListId: 'TODO_LIST_ID' };
     const firestoreDoc: FirestoreDoc = { todoListId: 'TODO_LIST_ID' };
 
-    expect(convertService.fromFirestoreDoc(firestoreDoc)).toEqual(
+    expect(fromFirestoreDoc(firestoreDoc)).toEqual(
       expectedUserInfo
     );
   });
@@ -36,23 +31,21 @@ describe('ConvertService', () => {
     const userInfo: UserInfo = { todoListId: 'TODO_LIST_ID' };
     const expectedFirestoreDoc: FirestoreDoc = { todoListId: 'TODO_LIST_ID' };
 
-    expect(convertService.toFirestoreDoc(userInfo)).toEqual(
+    expect(toFirestoreDoc(userInfo)).toEqual(
       expectedFirestoreDoc
     );
-  });
+  }); 
 });
 
 describe('Service: UserInfoDataService - no TestBed', () => {
   let service: UserInfoDataService;
   //
   const afs = {};
-  const convertService = {};
   const environmentService = new EnvironmentService();
 
   beforeEach(() => {
     service = new UserInfoDataService(
       afs as any,
-      convertService as any,
       environmentService
     );
   });
