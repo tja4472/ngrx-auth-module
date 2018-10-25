@@ -21,7 +21,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml','spec'],
+    reporters: ['kjhtml', 'spec'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
