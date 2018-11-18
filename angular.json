@@ -25,11 +25,6 @@
                 "input": "src/assets",
                 "output": "assets"
               },
-              {
-                "glob": "**/*.svg",
-                "input": "node_modules/@ionic/angular/dist/ionic/svg",
-                "output": "./svg"
-              },
               "src/manifest.json"
             ],
             "styles": [
@@ -59,6 +54,13 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],              
               "serviceWorker": true
             }
           }
