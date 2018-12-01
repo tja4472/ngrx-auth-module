@@ -29,7 +29,7 @@
     "@angular/pwa": "0.11.0",
     "@angular/router": "7.1.1",
     "@angular/service-worker": "7.1.1",
-    "@ionic/angular": "4.0.0-beta.16",
+    "@ionic/angular": "4.0.0-beta.17",
     "@ngrx/effects": "6.1.2",
     "@ngrx/entity": "6.1.2",
     "@ngrx/router-store": "6.1.2",
