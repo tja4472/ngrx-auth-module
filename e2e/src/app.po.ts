@@ -11,8 +11,17 @@ export class AppPage {
   }
 
   getPageOneTitleText() {
-    return element(by.tagName('app-home'))
-      .element(by.deepCss('ion-title'))
-      .getText();
+    return element(by.deepCss('[data-test=page-title]')).getText();
+    // browser.waitForAngularEnabled(false);
+    // return element(by.tagName('ion-router-outlet')).getText();
+
+    // element(by.tagName('ion-router-outlet'))
+    //  element(by.deepCss('[data-test=page-title]'))
+    // .element(by.deepCss('ion-header'))
+    //  .getText();
+  }
+
+  getMenuUserText() {
+    return element(by.tagName('tja-menu-auth')).getText();
   }
 }
