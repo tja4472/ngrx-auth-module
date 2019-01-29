@@ -7,6 +7,7 @@
     <ion-item>
       <ion-label position="stacked" color="primary">Email address</ion-label>
       <ion-input
+        data-test="email-input"
         formControlName="username"
         placeholder="Username"
         type="email"
@@ -21,6 +22,7 @@
     <ion-item>
       <ion-label position="stacked" color="primary">Password</ion-label>
       <ion-input
+        data-test="password-input"
         type="password"
         formControlName="password"
         placeholder="Password"
@@ -44,7 +46,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" [disabled]="!loginForm.valid" expand="block"
+        <ion-button data-test="sign-in-button" type="submit" [disabled]="!loginForm.valid" expand="block"
           >Sign In</ion-button
         >
       </ion-col>
