@@ -1,30 +1,16 @@
-import { browser, by, element, until } from 'protractor';
+// tslint:disable:no-debugger
+
+import {
+  browser,
+  by,
+  element,
+  ExpectedConditions,
+  Key,
+  until,
+} from 'protractor';
 import { AppPage } from './app.po';
-
-// https://github.com/ionic-team/ionic/blob/master/angular/test/test-app/e2e/src/utils.ts
-export function waitTime(time: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, time);
-  });
-}
-
-export function getText(selector: string) {
-  return browser.executeScript(`
-    return document.querySelector('${selector}').textContent;
-  `);
-}
-
-export function getProperty(selector: string, property: string) {
-  return browser.executeScript(`
-    return document.querySelector('${selector}')['${property}'];
-  `);
-}
-export function setProperty(selector: string, property: string, value: any) {
-  const text = JSON.stringify(value);
-  return browser.executeScript(`
-    document.querySelector('${selector}')['${property}'] = ${text};
-  `);
-}
+import { getProperty, getText, setProperty, waitTime } from './ionic-utils';
+import { removeFirebaseAutoSignIn } from './utils';
 
 describe('new App', () => {
   let page: AppPage;
@@ -34,87 +20,75 @@ describe('new App', () => {
   });
   describe('default screen', () => {
     beforeEach(async () => {
-      // Remove Firebase autologin.
-      // indexedDB.deleteDatabase('firebaseLocalStorageDb');
-      // browser.executeScript('window.localStorage.clear();');
-      // await browser.restart();
-      // await page.navigateTo('/home');
+      await removeFirebaseAutoSignIn();
+      await browser.get('/sign-in');
+      /*
       await browser.get('/home');
       // Should be signed out, so should be redirected.
-      await browser.wait(until.urlContains('/sign-in'));
-    });
-
-    it('test-1', async () => {
-      const title = await browser.wait(
-        until.elementLocated(by.css('[data-test=page-title]'))
+      await browser.wait(
+        until.urlContains('/sign-in'),
+        15 * 1000,
+        'Should redirect to `/sign-in`'
       );
-      expect(title.getText()).toEqual('Sign In');
-
-      expect(
-        await getProperty('[data-test=sign-in-button]', 'disabled')
-      ).toEqual(true);
-      await setProperty('[data-test=email-input]', 'value', 'a.a@a.com');
-      await setProperty('[data-test=password-input]', 'value', 'password');
-
-      // expect(await  aaa.isEnabled()).toEqual(true);
-
-      expect(
-        await getProperty('[data-test=sign-in-button]', 'disabled')
-      ).toEqual(false);
-
-      await element(by.css('[data-test=sign-in-button]')).click();
+      */
     });
 
-    it('test-2', async () => {
-      const aaa = await browser.wait(
-        until.elementLocated(by.css('[data-test=sign-in-button]'))
-      );
-      expect(await aaa.isEnabled()).toEqual(true);
-    });
-
-    xit('should have a title saying `Sign In`', async () => {
-      // await browser.wait(until.urlContains('/sign-in'));
-      // await waitTime(500);
-
-      // await browser.waitForAngularEnabled(true);
-
-      /*
-      await page.getPageOneTitleText().then((title) => {
-        console.log('title >', title, '<');
-
-        expect(title).toEqual('Sign In');
-      });
-      */
-      // expect(await page.getPageOneTitleText()).toEqual('Sign In');
-      /*
+    it('should have page title `Sign In`', async () => {
+      await browser.get('/sign-in');
       expect(
-        await element(by.deepCss('[data-test=page-title]')).getText()
-      ).toEqual('Sign In');;
-      */
-
-      expect(await getText('[data-test=page-title]')).toEqual(' Sign In ');
-
-      expect(
-        await getProperty('[data-test=sign-in-button]', 'disabled')
-      ).toEqual(true);
-
-      await setProperty('[data-test=email-input]', 'value', 'a.a@a.com');
-      await setProperty('[data-test=password-input]', 'value', 'password');
-
-      // tslint:disable-next-line:no-debugger
-      debugger;
-
-      expect(
-        await getProperty('[data-test=sign-in-button]', 'disabled')
-      ).toEqual(false);
-      await element(by.css('[data-test=sign-in-button]')).click();
-
-      // await browser.waitForAngularEnabled(true);
-      // expect(await page.getMenuUserText()).toEqual('Not Signed In');
+        await element(by.css('[data-test=sign-in-page-title]')).getText()
+      ).toEqual('Sign In');
     });
 
     it('should have a user saying `Not Signed In`', async () => {
       expect(await page.getMenuUserText()).toEqual('Not Signed In');
+    });
+
+    it('should have a disabled sign in button', async () => {
+      expect(
+        await getProperty('[data-test=sign-in-button]', 'disabled')
+      ).toEqual(true);
+    });
+
+    it('should redirect to `/home` on sign in', async () => {
+      await setProperty('[data-test=email-input]', 'value', 'a.a@a.com');
+      await setProperty('[data-test=password-input]', 'value', 'password');
+
+      /*      
+      const button = await browser.wait(
+        until.elementLocated(by.css('[data-test=sign-in-button]')),
+        15 * 1000,
+        'Locating [data-test=sign-in-button]'
+      );
+*/
+
+      expect(
+        await getProperty('[data-test=sign-in-button]', 'disabled')
+      ).toBeFalsy();
+
+      // await button.click();
+      /*
+      const EC = ExpectedConditions;
+      await browser.wait(
+        EC.elementToBeClickable(element(by.css('[data-test=sign-in-button]'))),
+        15 * 1000,
+        'kkkkkkkkkkkkkkkkkkkkkk'
+      );
+      */
+
+      await element(by.css('[data-test=sign-in-button]')).click();
+
+      await browser.wait(
+        until.urlContains('/home'),
+        15 * 1000,
+        'Should redirect to `/home`'
+      );
+
+      expect(
+        await browser
+          .wait(until.elementLocated(by.css('[data-test=home-page-title]')))
+          .getText()
+      ).toEqual('Home');
     });
   });
 });

@@ -10,7 +10,7 @@ exports.config = {
     browserName: 'chrome',
 
     chromeOptions: {
-      args: ['--headless', '--disable-gpu', '--log-level=2'],
+      args: ['--disable-gpu', '--log-level=2', "--start-maximized"],
     },
   },
   SELENIUM_PROMISE_MANAGER: false,
