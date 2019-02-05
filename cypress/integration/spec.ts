@@ -1,14 +1,30 @@
 import { getMenuTitle, navigateTo } from '../support/po';
 
-describe('describe-0', () => {
+describe('app - signed out', () => {
   beforeEach(() => {
     // Remove Firebase autologin.
     indexedDB.deleteDatabase('firebaseLocalStorageDb');
-    navigateTo();  
   });
 
   it('should display menu title, Menu', () => {
+    navigateTo();
     getMenuTitle().contains('Menu');
+  });
+
+  it('should goto `\list', () => {
+    cy.visit('http://localhost:4200/list');
+    cy.url().should('include', '/list');
+  });
+
+  it('should have user `Not Signed In` on list page', () => {
+    cy.visit('http://localhost:4200/list');
+    cy.get('tja-menu-auth').should('contain', 'Not Signed In');
+    cy.get('tja-menu-auth').contains('Not Signed In');
+  });
+
+  it('should redirect to `\sign-in` when going to `\home`', () => {
+    cy.visit('http://localhost:4200/home');
+    cy.url().should('include', '/sign-in');
   });
 
   /*
@@ -20,10 +36,10 @@ describe('describe-0', () => {
     cy.get('[data-test=sign-in-button]').click();
     // cy.pause();
           // we should be redirected to /home
-          cy.url().should('include', '/home')
+          // cy.url().should('include', '/home')
   });
-  */
-
+ */
+  /*
   it('test 2', () => {
     // cy.pause();
 
@@ -36,6 +52,51 @@ describe('describe-0', () => {
     // https://github.com/cypress-io/cypress/issues/830
     // https://gist.github.com/egucciar/5f31c84f19190b5e64737a9d80eb7a9d
     cy.get('[data-test=sign-in-button]').get('button').contains('SIGN IN');
+  });
+  */
+});
+
+describe('sign-in page', () => {
+  beforeEach(() => {
+    // Remove Firebase autologin.
+    indexedDB.deleteDatabase('firebaseLocalStorageDb');
+    cy.visit('http://localhost:4200/sign-in');
+  });
+
+  it('should have page title `Sign In`', () => {
+    cy.get('tja-sign-in-page [data-test=sign-in-page-title]').contains(
+      'Sign In'
+    );
+  });
+
+  it('should have disabled `SIGN IN` button', () => {
+    cy.get('tja-sign-in-page [data-test=sign-in-button]').should(
+      'have.attr',
+      'disabled'
+    );
+
+    cy.get('tja-sign-in-page [data-test=sign-in-button]').should(
+      'have.attr',
+      'expand',
+      'block'
+    );
+    // cy.get('tja-sign-in-page [data-test=sign-in-button]').its('disable').should ('be.false');
+  });
+
+  it('should have enabled `SIGN IN` button', () => {
+    cy.get('[data-test=email-input] > .native-input').type('a.a@a.com');
+    cy.get('[data-test=password-input] > .native-input').type('password');
+    cy.get('tja-sign-in-page [data-test=sign-in-button]').should(
+      'not.have.attr',
+      'disabled'
+    );
+  });
+
+  it('should redirect to `home` on successful sign in', () => {
+    cy.get('[data-test=email-input] > .native-input').type('a.a@a.com');
+    cy.get('[data-test=password-input] > .native-input').type('password');
+    cy.get('tja-sign-in-page [data-test=sign-in-button]').click();
+    cy.url().should('include', '/home');
   });
 });
 
