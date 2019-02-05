@@ -36,7 +36,7 @@ describe('new App', () => {
     it('should have page title `Sign In`', async () => {
       await browser.get('/sign-in');
       expect(
-        await element(by.css('[data-test=sign-in-page-title]')).getText()
+        await element(by.css('tja-sign-in-page [data-test=sign-in-page-title]')).getText()
       ).toEqual('Sign In');
     });
 
@@ -46,7 +46,7 @@ describe('new App', () => {
 
     it('should have a disabled sign in button', async () => {
       expect(
-        await getProperty('[data-test=sign-in-button]', 'disabled')
+        await getProperty('tja-sign-in-page [data-test=sign-in-button]', 'disabled')
       ).toEqual(true);
     });
 
@@ -86,7 +86,7 @@ describe('new App', () => {
 
       expect(
         await browser
-          .wait(until.elementLocated(by.css('[data-test=home-page-title]')))
+          .wait(until.elementLocated(by.css('app-home [data-test=home-page-title]')))
           .getText()
       ).toEqual('Home');
     });
