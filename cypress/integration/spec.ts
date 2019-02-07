@@ -1,5 +1,7 @@
 import { getMenuTitle, navigateTo } from '../support/po';
 
+// it.only
+
 describe('app - signed out', () => {
   beforeEach(() => {
     // Remove Firebase autologin.
@@ -11,7 +13,7 @@ describe('app - signed out', () => {
     getMenuTitle().contains('Menu');
   });
 
-  it('should goto `\list', () => {
+  it('should goto `/list', () => {
     cy.visit('http://localhost:4200/list');
     cy.url().should('include', '/list');
   });
@@ -22,7 +24,7 @@ describe('app - signed out', () => {
     cy.get('tja-menu-auth').contains('Not Signed In');
   });
 
-  it('should redirect to `\sign-in` when going to `\home`', () => {
+  it('should redirect to `/sign-in` when going to `home`', () => {
     cy.visit('http://localhost:4200/home');
     cy.url().should('include', '/sign-in');
   });
@@ -83,9 +85,15 @@ describe('sign-in page', () => {
     // cy.get('tja-sign-in-page [data-test=sign-in-button]').its('disable').should ('be.false');
   });
 
+  it('should have an invalid form', () => {
+    // cy.get('tja-sign-in-page form').should('have.attr', 'class').contains('AAng-invalid');
+    cy.get('tja-sign-in-page form').should('have.class', 'ng-invalid');
+  });
+
   it('should have enabled `SIGN IN` button', () => {
     cy.get('[data-test=email-input] > .native-input').type('a.a@a.com');
     cy.get('[data-test=password-input] > .native-input').type('password');
+    cy.get('tja-sign-in-page form').should('have.class', 'ng-valid');
     cy.get('tja-sign-in-page [data-test=sign-in-button]').should(
       'not.have.attr',
       'disabled'
