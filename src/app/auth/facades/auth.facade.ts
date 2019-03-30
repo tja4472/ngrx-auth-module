@@ -39,14 +39,14 @@ export class AuthFacade {
   constructor(private store: Store<{}>) {}
 
   public signInPageSignIn(credentials: Credentials) {
-    this.store.dispatch(new SignInPageActions.SignIn({ credentials }));
+    this.store.dispatch(SignInPageActions.signIn({ credentials }));
   }
 
   public signUpPageSignUp(credentials: Credentials) {
-    this.store.dispatch(new SignUpPageActions.SignUp({ credentials }));
+    this.store.dispatch(SignUpPageActions.signUp({ credentials }));
   }
 
   public showSignUpPage() {
-    this.store.dispatch(new AuthApiActions.ShowSignUpPage());
+    this.store.dispatch(AuthApiActions.showSignUpPage());
   }
 }
