@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store } from '@ngrx/store';
+import { Action, select, Store } from '@ngrx/store';
 
 import {
   AuthApiActions,
@@ -38,15 +38,7 @@ export class AuthFacade {
 
   constructor(private store: Store<{}>) {}
 
-  public signInPageSignIn(credentials: Credentials) {
-    this.store.dispatch(SignInPageActions.signIn({ credentials }));
-  }
-
-  public signUpPageSignUp(credentials: Credentials) {
-    this.store.dispatch(SignUpPageActions.signUp({ credentials }));
-  }
-
-  public showSignUpPage() {
-    this.store.dispatch(AuthApiActions.showSignUpPage());
+  public dispatch(action: Action): void {
+    this.store.dispatch(action);
   }
 }

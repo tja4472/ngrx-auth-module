@@ -35,7 +35,7 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   doSignUp$ = this.actions$.pipe(
-    ofType(AuthApiActions.showSignUpPage.type),
+    ofType(SignInPageActions.showSignUpPage.type),
     tap(() => {
       this.router.navigate(['/sign-up']);
     })

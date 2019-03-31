@@ -13,8 +13,6 @@ export const autoSignInNoUser = createAction(
   '[Auth/API] Auto Sign In - No User'
 );
 
-export const showSignUpPage = createAction('[Auth] Show Sign Up Page');
-
 export const signInFailure = createAction(
   '[Auth/API] Sign In - Failure',
   props<{ error: any }>()
@@ -43,7 +41,6 @@ const all = union({
   autoSignIn,
   autoSignInHaveUser,
   autoSignInNoUser,
-  showSignUpPage,
   signInFailure,
   signInSuccess,
   signOut,
