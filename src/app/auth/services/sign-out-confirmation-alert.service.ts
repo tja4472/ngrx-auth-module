@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { AlertController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
 
+import { AlertController } from '@ionic/angular';
 import { AlertOptions } from '@ionic/core';
 
-import { SignOutConfirmationAlertFacade } from '@app/auth/facades/sign-out-confirmation-alert.facade';
+import { SignOutConfirmationAlertActions } from '@app/auth/actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SignOutConfirmationAlertService {
-  constructor(
-    private alertCtrl: AlertController,
-    private signOutConfirmationAlertFacade: SignOutConfirmationAlertFacade
-  ) {}
+  constructor(private alertCtrl: AlertController, private store: Store<{}>) {}
 
   public async show() {
     const options: AlertOptions = {
@@ -22,14 +20,14 @@ export class SignOutConfirmationAlertService {
           text: 'Cancel',
           handler: () => {
             // console.log('Cancel============');
-            this.signOutConfirmationAlertFacade.Cancelled();
+            this.store.dispatch(SignOutConfirmationAlertActions.cancelled());
           },
         },
         {
           text: 'Ok',
           handler: () => {
             // console.log('OK============');
-            this.signOutConfirmationAlertFacade.Accepted();
+            this.store.dispatch(SignOutConfirmationAlertActions.accepted());
           },
         },
       ],
