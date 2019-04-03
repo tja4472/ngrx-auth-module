@@ -31,16 +31,17 @@
     "interface-name": false,
     "no-console": false,
     "deprecation": true,
-    /*
+
     "no-submodule-imports": [
       true,
-      "rxjs",
-      "@angular/platform-browser",
-      "@angular/core/testing",
-      "@angular/router/testing",
-      "@ionic-native"
-    ],    
-    */
+      "@angular",
+      "@app",
+      "@ionic-native",
+      "@ngrx",
+      "environments",
+      "rxjs"
+    ],
+
     "ordered-imports": {
       "options": {
         "import-sources-order": "case-insensitive",
@@ -71,7 +72,7 @@
     // "member-ordering": false,
     "no-empty": false,
     // "jsdoc-format": false,
-    "no-submodule-imports": false,
+    // "no-submodule-imports": false,
     "no-implicit-dependencies": false
   }
 }
