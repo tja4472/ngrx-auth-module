@@ -1,5 +1,9 @@
 // tslint:disable:no-debugger
 
+import { AppPage } from './app.po';
+import { getProperty, getText, setProperty, waitTime } from './ionic-utils';
+import { removeFirebaseAutoSignIn } from './utils';
+
 import {
   browser,
   by,
@@ -8,9 +12,6 @@ import {
   Key,
   until,
 } from 'protractor';
-import { AppPage } from './app.po';
-import { getProperty, getText, setProperty, waitTime } from './ionic-utils';
-import { removeFirebaseAutoSignIn } from './utils';
 
 describe('new App', () => {
   let page: AppPage;

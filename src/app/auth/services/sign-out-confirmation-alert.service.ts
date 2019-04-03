@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Store } from '@ngrx/store';
-
 import { AlertController } from '@ionic/angular';
 import { AlertOptions } from '@ionic/core';
+
+import { Store } from '@ngrx/store';
 
 import { SignOutConfirmationAlertActions } from '@app/auth/actions';
 

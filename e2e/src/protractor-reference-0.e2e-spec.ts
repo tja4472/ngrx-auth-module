@@ -1,3 +1,6 @@
+import { waitTime } from './ionic-utils';
+import { removeFirebaseAutoSignIn } from './utils';
+
 import {
   browser,
   by,
@@ -6,8 +9,6 @@ import {
   Key,
   until,
 } from 'protractor';
-import { waitTime } from './ionic-utils';
-import { removeFirebaseAutoSignIn } from './utils';
 
 describe('protractor reference 0', () => {
   describe('list page - before sign in', () => {

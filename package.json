@@ -3,15 +3,13 @@
   "version": "0.0.1",
   "author": "TJA",
   "description": "ngrx-auth-module",
-  "repository": {
-    "url": "https://github.com/tja4472/ngrx-auth-module"
-  },
+  "homepage": "https://github.com/tja4472/ngrx-auth-module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint || ECHO .",
+    "lint": "ng lint",
     "e2e": "ng e2e",
     "prettier:list": "prettier --list-different \"./{e2e,src}/**/*.{scss,ts}\" || ECHO .",
     "prettier:write": "prettier --write \"./{e2e,src}/**/*.{scss,ts}\"",

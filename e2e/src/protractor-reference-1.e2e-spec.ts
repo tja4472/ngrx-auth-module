@@ -1,3 +1,6 @@
+import { getProperty, waitTime } from './ionic-utils';
+import { removeFirebaseAutoSignIn } from './utils';
+
 import {
   browser,
   by,
@@ -6,8 +9,6 @@ import {
   Key,
   until,
 } from 'protractor';
-import { getProperty, waitTime } from './ionic-utils';
-import { removeFirebaseAutoSignIn } from './utils';
 
 describe('protractor reference 1: describe in separate file', () => {
   it('should have a user saying `a.a@a.com`', async () => {

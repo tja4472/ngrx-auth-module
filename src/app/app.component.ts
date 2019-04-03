@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -5,7 +6,7 @@ import { Platform } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
 import { AuthFacade } from '@app/auth/facades/auth.facade';
-import { UserModel } from '@app/auth/models/user.model';
+import { UserModel } from '@app/auth/models/user.model'
 
 @Component({
   selector: 'app-root',

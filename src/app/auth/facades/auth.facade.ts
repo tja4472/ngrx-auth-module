@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { Action, select, Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
 
 import { authQuery } from '@app/auth/selectors/auth.selectors';
 import { signInPageQuery } from '@app/auth/selectors/sign-in-page.selectors';
 import { signUpPageQuery } from '@app/auth/selectors/sign-up-page.selectors';
+
 import { UserModel } from '../models/user.model';
 
 @Injectable({
