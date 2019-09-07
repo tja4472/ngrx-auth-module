@@ -8,7 +8,7 @@ import {
 } from '@ngrx/store';
 
 import { environment } from 'environments/environment';
-import { storeFreeze } from 'ngrx-store-freeze';
+
 
 export interface State {
   router: fromRouter.RouterReducerState;
@@ -33,5 +33,5 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export const metaReducers: Array<MetaReducer<State>> = !environment.production
-  ? [logger, storeFreeze]
+  ? [logger]
   : [];

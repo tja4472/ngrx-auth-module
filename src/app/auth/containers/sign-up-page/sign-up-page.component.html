@@ -9,8 +9,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <tja-sign-up-form [errorMessage]="error$ | async"
-                    [pending]="pending$ | async"
-                    (submitted)="onSubmitted($event)"></tja-sign-up-form>
+<ion-content class="ion-padding">
+  <tja-sign-up-form
+    [errorMessage]="error$ | async"
+    [pending]="pending$ | async"
+    (submitted)="onSubmitted($event)"
+  ></tja-sign-up-form>
 </ion-content>

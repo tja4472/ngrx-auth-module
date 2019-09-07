@@ -34,7 +34,7 @@ import { environment } from 'environments/environment';
     AngularFirestoreModule,
     ComponentsModule,
     // AppRoutingModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers, runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
     EffectsModule.forRoot([]),
     AuthModule,
     StoreRouterConnectingModule.forRoot({
